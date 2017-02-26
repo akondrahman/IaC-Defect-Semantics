@@ -4,7 +4,7 @@ to handle list oflists
 Feb 27, 2017
 
 '''
-import utility
+import utility, token_pre_processor
 from nltk.stem.porter import PorterStemmer
 
 def get_stop_words():
@@ -32,7 +32,7 @@ def removeNumeralsFromList(listParam):
     finalList=[]
     for list_ in listParam:
         for tokenStr in list_:
-            modifiedTokenStr =  wordConverter.removeNumeralsFromWord(tokenStr)
+            modifiedTokenStr =  token_pre_processor.removeNumeralsFromWord(tokenStr)
             tempList.append(modifiedTokenStr)
         finalList.append(tempList)
         #print "List after numeral handling: ", tempList
@@ -46,7 +46,7 @@ def removeSpecialCharsFromList(listParam):
     finalList=[]
     for list_ in listParam:
         for tokenStr in list_:
-            modifiedTokenStr =  wordConverter.removeSpecialCharsFromWord(tokenStr)
+            modifiedTokenStr =  token_pre_processor.removeSpecialCharsFromWord(tokenStr)
             tempList.append(modifiedTokenStr)
         finalList.append(tempList)
         #print "List after special character handling: ", tempList
@@ -59,7 +59,7 @@ def removeDelimitersFromList(listParam):
     finalList=[]
     for list_ in listParam:
         for tokenStr in list_:
-            modifiedTokenStr =  wordConverter.removeDelimitersFromWord(tokenStr)
+            modifiedTokenStr =  token_pre_processor.removeDelimitersFromWord(tokenStr)
             tempList.append(modifiedTokenStr)
         finalList.append(tempList)
         #print "List after special character handling: ", tempList
@@ -76,7 +76,7 @@ def splitUnderscores(listParam):
         #print "List before underscore handling: ", listO
         for tokenStr in list_:
             if tokenStr is not None  and underscoreStr in tokenStr:
-                splittedTokenList = wordConverter.splitUnderscores(tokenStr)
+                splittedTokenList = token_pre_processor.splitUnderscores(tokenStr)
                 tempList.extend(splittedTokenList)
             else:
                 tempList.append(tokenStr)
@@ -96,7 +96,7 @@ def splitSpaces(listParam):
         #print "List before space handling : ", listO ;
         for tokenStr in list_:
             if tokenStr is not None  and spaceStr in tokenStr:
-                splittedTokenList = wordConverter.splitSpaces(tokenStr)
+                splittedTokenList = token_pre_processor.splitSpaces(tokenStr)
                 tempList.extend(splittedTokenList)
             else:
                 tempList.append(tokenStr)
@@ -112,7 +112,7 @@ def handleCamelNPascalCaseInList(listParam):
     finalList=[]
     for list_ in listParam:
         for tokenStr in list_:
-            modifiedTokenStr = wordConverter.splitCamelNPascalCase(tokenStr)
+            modifiedTokenStr = token_pre_processor.splitCamelNPascalCase(tokenStr)
             tempList.append(modifiedTokenStr)
         finalList.append(tempList)
         #print "List after camel case handling: ", tempList
