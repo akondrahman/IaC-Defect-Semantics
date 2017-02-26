@@ -19,20 +19,22 @@ def generateCorpus(rawTokenList):
     ## 4
     outputList_ColonHandled = listHandler.splitColons(outputList_DotHandled)
     ## 5
-    outputList_CamelNPascalHandled = listHandler.handleCamelNPascalCaseInList(outputList_ColonHandled)
+    outputList_SlashHandled = listHandler.splitSlashes(outputList_ColonHandled)
     ## 6
-    outputList_SplitSpaces = listHandler.splitSpaces(outputList_CamelNPascalHandled)
+    outputList_CamelNPascalHandled = listHandler.handleCamelNPascalCaseInList(outputList_SlashHandled)
     ## 7
-    outputList_SpecialCharsRemoved = listHandler.removeSpecialCharsFromList(outputList_SplitSpaces)
+    outputList_SplitSpaces = listHandler.splitSpaces(outputList_CamelNPascalHandled)
     ## 8
-    outputList_SmallTokensRemoved = listHandler.removeSmallLenghtedTokens(outputList_SpecialCharsRemoved, thresOfTokenLen)
+    outputList_SpecialCharsRemoved = listHandler.removeSpecialCharsFromList(outputList_SplitSpaces)
     ## 9
-    outputList_StopWordGone = listHandler.removeStopWords(outputList_SmallTokensRemoved)
+    outputList_SmallTokensRemoved = listHandler.removeSmallLenghtedTokens(outputList_SpecialCharsRemoved, thresOfTokenLen)
     ## 10
-    outputList_AllKeyWordsRemoved = listHandler.removePuppKeywords(outputList_StopWordGone)
+    outputList_StopWordGone = listHandler.removeStopWords(outputList_SmallTokensRemoved)
     ## 11
-    output_DelimiterRemoved = listHandler.removeDelimitersFromList(outputList_AllKeyWordsRemoved)
+    outputList_AllKeyWordsRemoved = listHandler.removePuppKeywords(outputList_StopWordGone)
     ## 12
+    output_DelimiterRemoved = listHandler.removeDelimitersFromList(outputList_AllKeyWordsRemoved)
+    ## 13
     output_porter_stemmed = listHandler.format_using_stemmer(output_DelimiterRemoved)
     print "--------------------------- ALMOST THERE! ----------------------------"
     print "I am done [:-)], current length of the list: ", len(output_porter_stemmed)

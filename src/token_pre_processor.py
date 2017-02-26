@@ -63,3 +63,13 @@ def splitColons(strParam):
         if strParam is not None:
             tempList = strParam.split(_Str)
         return tempList
+
+
+
+
+def splitSlashes(strParam):
+        _Str="/"
+        tempList = []
+        if strParam is not None:
+            tempList = strParam.split(_Str)
+        return tempList
