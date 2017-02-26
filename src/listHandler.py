@@ -171,3 +171,20 @@ def format_using_stemmer(listParam):
     output_list.append(formatted_list)
     formatted_list = []
   return output_list
+
+def splitDots(listParam):
+    tempList=[]
+    finalList=[]
+    dotStr="."
+    splittedTokenList = []
+    for list_ in listParam:
+        for tokenStr in list_:
+            if tokenStr is not None  and dotStr in tokenStr:
+                splittedTokenList = token_pre_processor.splitDots(tokenStr)
+                tempList.extend(splittedTokenList)
+            else:
+                tempList.append(tokenStr)
+        finalList.append(tempList)
+        #print "List after underscore handling: ", tempList
+        tempList = []
+    return finalList

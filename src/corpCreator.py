@@ -14,20 +14,22 @@ def generateCorpus(rawTokenList):
     ## 2
     outputList_UnderscoreHandled = listHandler.splitUnderscores(outputList_NumeralsRemoved)
     ## 3
-    outputList_CamelNPascalHandled = listHandler.handleCamelNPascalCaseInList(outputList_UnderscoreHandled)
+    outputList_DotHandled = listHandler.splitDots(outputList_UnderscoreHandled)
     ## 4
-    outputList_SplitSpaces = listHandler.splitSpaces(outputList_CamelNPascalHandled)
+    outputList_CamelNPascalHandled = listHandler.handleCamelNPascalCaseInList(outputList_DotHandled)
     ## 5
-    outputList_SpecialCharsRemoved = listHandler.removeSpecialCharsFromList(outputList_SplitSpaces)
+    outputList_SplitSpaces = listHandler.splitSpaces(outputList_CamelNPascalHandled)
     ## 6
-    outputList_SmallTokensRemoved = listHandler.removeSmallLenghtedTokens(outputList_SpecialCharsRemoved, thresOfTokenLen)
+    outputList_SpecialCharsRemoved = listHandler.removeSpecialCharsFromList(outputList_SplitSpaces)
     ## 7
-    outputList_StopWordGone = listHandler.removeStopWords(outputList_SmallTokensRemoved)
+    outputList_SmallTokensRemoved = listHandler.removeSmallLenghtedTokens(outputList_SpecialCharsRemoved, thresOfTokenLen)
     ## 8
+    outputList_StopWordGone = listHandler.removeStopWords(outputList_SmallTokensRemoved)
+    ## 9
     outputList_AllKeyWordsRemoved = listHandler.removePuppKeywords(outputList_StopWordGone)
-    ##9
+    ## 10
     output_DelimiterRemoved = listHandler.removeDelimitersFromList(outputList_AllKeyWordsRemoved)
-    ##10
+    ## 11
     output_porter_stemmed = listHandler.format_using_stemmer(output_DelimiterRemoved)
     print "--------------------------- ALMOST THERE! ----------------------------"
     print "I am done [:-)], current length of the list: ", len(output_porter_stemmed)

@@ -43,3 +43,13 @@ def splitSpaces(strParam):
         if strParam is not None:
             tempList = strParam.split(spaceStr)
         return tempList
+
+
+
+
+def splitDots(strParam):
+        dotStr="."
+        tempList = []
+        if strParam is not None:
+            tempList = strParam.split(dotStr)
+        return tempList
