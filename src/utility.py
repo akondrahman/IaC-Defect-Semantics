@@ -93,7 +93,7 @@ def createCorpusForLDA(listParam, fileNameParam):
     #print "Inside the .mm file "
     #pprint(corpus)
     corpora.MmCorpus.serialize(theMMFile, corpus)
-    print "------------------------Done Creating Corpus------------------------"
+    print "Done Creating Corpus ... "
 
 
 
@@ -107,4 +107,5 @@ def performLDA(corpusFileParam, topicNumParam):
     fittedLDAModel  = models.LdaModel(corpToUse, num_topics=topicNumParam, id2word=dictToUse)
     corpus_LDA      = fittedLDAModel[corpToUse] # create a double wrapper over the original corpus: bow->tfidf->fold-in-lsi
     ### let us print the words that constitue a topic
-    fittedLDAModel.print_topics(topicNumParam)
+    topic_distr_to_print  = fittedLDAModel.print_topics(topicNumParam)
+    return topic_distr_to_print

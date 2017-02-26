@@ -27,15 +27,18 @@ def getTokensForTopicModeling(datasetParam):
 
 
 
-def createCorpusForTopicModeling(tokenTuple):
+def executeTopicModeling(tokenTuple):
    indexCnt=0
    for tokenList in tokenTuple:
       indexCnt = indexCnt + 1
+      print "Corpus index:", str(indexCnt)
       fully_processed_corpus = corpCreator.generateCorpus(tokenList)
       #print "Taking a peek", fully_processed_corpus[0]
       #print "="*100
       utility.createCorpusForLDA(fully_processed_corpus, str(indexCnt))
-      utility.performLDA(str(indexCnt), 10)
+      lda_topic_distr = utility.performLDA(str(indexCnt), 10)
+      print lda_topic_distr
+      print "#"*100
 
 print "Started at", utility.giveTimeStamp()
 print "-"*125
@@ -43,6 +46,6 @@ dataset_file="/Users/akond/Documents/AkondOneDrive/OneDrive/IaC-Defect-Predictio
 #dataset_file="/Users/akond/Documents/AkondOneDrive/OneDrive/IaC-Defect-Prediction-Project/dataset/SYNTHETIC_WIKI_FULL_DATASET.csv"
 all_three_corpuses = getTokensForTopicModeling(dataset_file)
 print '-'*125
-createCorpusForTopicModeling(all_three_corpuses)
+executeTopicModeling(all_three_corpuses)
 print '-'*125
 print "Ended at", utility.giveTimeStamp()
