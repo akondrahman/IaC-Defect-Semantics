@@ -4,7 +4,7 @@ to handle list oflists
 Feb 27, 2017
 
 '''
-
+import utility
 from nltk.stem.porter import PorterStemmer
 
 def get_stop_words():
@@ -22,8 +22,8 @@ def get_stop_words():
   'than', 'too', 'very', 's', 't', 'can', 'will', 'just', 'don', 'should', 'now']
   return lisToRet
 
-#stopWordList =  get_stop_words()
-
+PuppetKeyWordFileName = 'PUPP_KW.txt'
+PuppetKeywordList = utility.readKeywordFile(PuppetKeyWordFileName)
 
 
 
@@ -153,7 +153,7 @@ def removePuppKeywords(listParam):
     finalList=[]
     for list_ in listParam:
         for tokenStr in list_:
-            if tokenStr not in JavaKeywordList :
+            if tokenStr not in PuppetKeywordList :
                 tempList.append(tokenStr)
         finalList.append(tempList)
         #print "List after removing Java keywords: ", tempList

@@ -4,6 +4,9 @@ topic modeling in IaC scripts
 Akond Rahman
 Feb 26, 2017
 '''
+import time, datetime, os, sys
+
+
 def giveCommentFreeFileContent(fileNameParam):
   str2ret=""
   for line_ in open(fileNameParam, 'rU'):
@@ -14,11 +17,16 @@ def giveCommentFreeFileContent(fileNameParam):
 
   return str2ret
 
-
-
-
 def giveTimeStamp():
-  import time, datetime
+
   tsObj = time.time()
   strToret = datetime.datetime.fromtimestamp(tsObj).strftime('%Y-%m-%d %H:%M:%S')
   return strToret
+def readKeywordFile(fileName):
+    listToRet = [] ;
+    fileO = open(fileName, 'r');
+    for line in fileO:
+        line = line.strip('\n');
+        line = line.strip('\t');
+        listToRet.append(line);
+    return listToRet ;
