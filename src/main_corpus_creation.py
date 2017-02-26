@@ -19,7 +19,7 @@ def createCorpusForTopicModeling(datasetParam):
        if (defectStatus=='1'):
          defectedCorpus.append(fileContentAsList)
        else:
-         defectedCorpus.append(fileContentAsList)
+         defectFreeCorpus.append(fileContentAsList)
        completeCorpus.append(fileContentAsList)
        print "="*75
    print "Summary: defected files:{}, defect free files: {}, all files:{}".format(len(defectedCorpus), len(defectFreeCorpus), len(completeCorpus))
@@ -31,6 +31,6 @@ print "Started at", utility.giveTimeStamp()
 print "-"*125
 dataset_file="/Users/akond/Documents/AkondOneDrive/OneDrive/IaC-Defect-Prediction-Project/dataset/SYNTHETIC_MOZ_FULL_DATASET.csv"
 #dataset_file="/Users/akond/Documents/AkondOneDrive/OneDrive/IaC-Defect-Prediction-Project/dataset/SYNTHETIC_WIKI_FULL_DATASET.csv"
-createCorpusForTopicModeling(dataset_file)
+all_three_corpuses = createCorpusForTopicModeling(dataset_file)
 print '-'*125
 print "Ended at", utility.giveTimeStamp()
