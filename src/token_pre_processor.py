@@ -73,3 +73,13 @@ def splitSlashes(strParam):
         if strParam is not None:
             tempList = strParam.split(_Str)
         return tempList
+
+
+
+
+def splitDashes(strParam):
+        _Str="-"
+        tempList = []
+        if strParam is not None:
+            tempList = strParam.split(_Str)
+        return tempList
