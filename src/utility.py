@@ -5,7 +5,7 @@ Akond Rahman
 Feb 26, 2017
 '''
 import time, datetime, os, sys
-from gensim import corpora
+from gensim import corpora, models
 from collections import defaultdict
 
 
@@ -94,3 +94,17 @@ def createCorpusForLDA(listParam, fileNameParam):
     #pprint(corpus)
     corpora.MmCorpus.serialize(theMMFile, corpus)
     print "------------------------Done Creating Corpus------------------------"
+
+
+
+def performLDA(corpusFileParam, topicNumParam):
+    dictFileToRead=corpFileParam+'.dict'
+    mmFileToread = corpFileParam + '.mm'
+    dictToUse = corpora.Dictionary.load(dictFileToRead)
+    corpToUse = corpora.MmCorpus(mmFileToread)
+    #print "Doing LDA model ..."
+    ## the follwong line take a lot of time for large number of documents
+    fittedLDAModel = models.LdaModel(corpToUse, num_topics=topicNumParam, id2word=dictToUse)
+    corpus_LDA     = fittedLDAModel[corpToUse] # create a double wrapper over the original corpus: bow->tfidf->fold-in-lsi
+    ### let us print the words that constitue a topic
+    fittedLDAModel.print_topics(topicNumParam)

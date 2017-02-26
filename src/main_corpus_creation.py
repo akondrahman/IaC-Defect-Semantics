@@ -32,9 +32,10 @@ def createCorpusForTopicModeling(tokenTuple):
    for tokenList in tokenTuple:
       indexCnt = indexCnt + 1
       fully_processed_corpus = corpCreator.generateCorpus(tokenList)
-      print "Taking a peek", fully_processed_corpus[0]
-      print "="*100
+      #print "Taking a peek", fully_processed_corpus[0]
+      #print "="*100
       utility.createCorpusForLDA(fully_processed_corpus, str(indexCnt))
+      utility.performLDA(str(indexCnt), 10)
 
 print "Started at", utility.giveTimeStamp()
 print "-"*125
