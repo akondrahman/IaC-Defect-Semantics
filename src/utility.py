@@ -108,4 +108,4 @@ def performLDA(corpusFileParam, topicNumParam):
     corpus_LDA      = fittedLDAModel[corpToUse] # create a double wrapper over the original corpus: bow->tfidf->fold-in-lsi
     ### let us print the words that constitue a topic
     topic_distr_to_print  = fittedLDAModel.print_topics(topicNumParam)
-    return topic_distr_to_print
+    return topic_distr_to_print, corpus_LDA

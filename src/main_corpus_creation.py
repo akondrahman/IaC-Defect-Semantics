@@ -36,8 +36,11 @@ def executeTopicModeling(tokenTuple):
       #print "Taking a peek", fully_processed_corpus[0]
       #print "="*100
       utility.createCorpusForLDA(fully_processed_corpus, str(indexCnt))
-      lda_topic_distr = utility.performLDA(str(indexCnt), 10)
+      lda_topic_distr, file_to_topic_prob = utility.performLDA(str(indexCnt), 10)
       print lda_topic_distr
+      print "*"*75
+      print file_to_topic_prob
+      print "*"*75
       print "#"*100
 
 print "Started at", utility.giveTimeStamp()
