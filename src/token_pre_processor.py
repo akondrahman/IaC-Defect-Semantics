@@ -53,3 +53,13 @@ def splitDots(strParam):
         if strParam is not None:
             tempList = strParam.split(dotStr)
         return tempList
+
+
+
+
+def splitColons(strParam):
+        _Str=":"
+        tempList = []
+        if strParam is not None:
+            tempList = strParam.split(_Str)
+        return tempList

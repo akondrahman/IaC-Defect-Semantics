@@ -188,3 +188,23 @@ def splitDots(listParam):
         #print "List after underscore handling: ", tempList
         tempList = []
     return finalList
+
+
+
+
+def splitColons(listParam):
+    tempList=[]
+    finalList=[]
+    colonStr=":"
+    splittedTokenList = []
+    for list_ in listParam:
+        for tokenStr in list_:
+            if tokenStr is not None  and colonStr in tokenStr:
+                splittedTokenList = token_pre_processor.splitColons(tokenStr)
+                tempList.extend(splittedTokenList)
+            else:
+                tempList.append(tokenStr)
+        finalList.append(tempList)
+        #print "List after underscore handling: ", tempList
+        tempList = []
+    return finalList
