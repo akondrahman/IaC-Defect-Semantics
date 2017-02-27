@@ -134,3 +134,21 @@ def getNTForFile(topic_file_dict_, count_of_files_in_corpus):
     dict_file_NT[file_name] = tmp_nt_holder
 
   return dict_file_NT
+
+
+
+def getTMForFile(topic_file_dict_, count_of_files_in_corpus, topic_count_param, topicProbParam):
+  dict_file_TM    = {}
+  allPuppFiles     = file_mapper.getPuppetFileList()
+  for file_index in xrange(count_of_files_in_corpus):
+    file_name         = allPuppFiles[file_index]
+    matchingTopics    = getMatchedTopics(file_index, topic_file_dict_)
+    prob_topic_holder = []
+    for topicCnt in topic_count_param:
+       if topicCnt in matchingTopics:
+         prob_of_this_topic = file_mapper.getTopicProbOfTheTopic(topicCnt, topicProbParam, file_index)
+       else:
+         prob_of_this_topic = float(0)
+       prob_topic_holder.append(prob_of_this_topic)
+    dict_file_TM[file_name] = prob_topic_holder
+  return dict_file_TM

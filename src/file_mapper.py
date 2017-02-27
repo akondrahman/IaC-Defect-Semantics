@@ -69,3 +69,16 @@ def mapTopic2Defects(topic_file_param):
                 tmp_.append(elem)
         topic_to_categ_to_ret[k_] = dict(collections.Counter(tmp_))
     return topic_to_categ_to_ret
+
+
+
+def getTopicProbOfTheTopic(topic_, topicProbTuple_, fileIndex_):
+  probToRet = 0
+  for cnt_ in xrange(len(topicProbTuple_)):
+     if(cnt_ == fileIndex_):
+        topicTuple = topicProbTuple_[cnt_]
+        topicIndex = topicTuple[0]
+        topicProb  = topicTuple[1]
+        if(topicIndex==topic_):
+          probToRet = topicProb
+  return probToRet

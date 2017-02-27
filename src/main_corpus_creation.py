@@ -44,6 +44,7 @@ def executeTopicModeling(tokenTuple):
       lda_topic_distr, file_to_topic_prob = utility.performLDA(str(indexCnt), topicCnt)
       ## spit out which tokens constitue each topic
       #print lda_topic_distr
+      print "topic prob. dict=> \n", topicProbTuple_
       print "*"*75
       topic_file_dict_for_this_corpus = file_mapper.mapTopicToFile(file_to_topic_prob)
       ## spit out legit association (prob >= 0.10) of each file with a topic
@@ -62,7 +63,9 @@ def executeTopicModeling(tokenTuple):
       ndt_for_file = defect_metric.getNDTForFile(defect_density_of_topics, topic_file_dict_for_this_corpus, len(tokenList))
       ### Metric-4 : NT for a file
       nt_for_file = defect_metric.getNTForFile(topic_file_dict_for_this_corpus, len(tokenList))
-      print "lol:\n", nt_for_file
+      #print "lol:\n", nt_for_file
+      ### Metric-5 : TM for a file
+      tm_for_file = defect_metric.getTMForFile(topic_file_dict_for_this_corpus, len(tokenList), topicCnt, file_to_topic_prob)
       #print "entries in dict", len(top2defect)
       print "*"*75
       print "#"*100
