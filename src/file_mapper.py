@@ -83,4 +83,5 @@ def getTopicProbOfTheTopic(topic_, topicProbTuple_, fileIndex_):
           topicProb  = elems[1]
           if(topicIndex==topic_):
             probToRet = topicProb
+            probToRet = round(probToRet, 5)
   return probToRet
