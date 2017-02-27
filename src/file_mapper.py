@@ -49,6 +49,7 @@ def getPuppetFileDetails():
 
 def mapTopic2DefectDensity(topic_file_param):
     topic_to_defect_categ_dict = {}
+    topic_to_categ_to_ret = {}
     allPuppFiles = getPuppetFileList()
     puppetFileDict = getPuppetFileDetails()
     for topic_, mappedFiles in topic_file_param.iteritems():
@@ -60,4 +61,11 @@ def mapTopic2DefectDensity(topic_file_param):
             topic_to_defect_categ_dict[topic_] = [defect_categ]
          else:
             topic_to_defect_categ_dict[topic_] = topic_to_defect_categ_dict[topic_] + [defect_categ]
-    return topic_to_defect_categ_dict
+    ## convert list of lists to one single list
+    for k_, v_ in topic_to_defect_categ_dict.items():
+        tmp_=[]
+        for elem_list in v_:
+            for elem in elem_list:
+                tmp_.append(elem)
+        topic_to_categ_to_ret[k_] = tmp_
+    return topic_to_categ_to_ret
