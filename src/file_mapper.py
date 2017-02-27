@@ -3,9 +3,9 @@ Feb 26, 2017
 Akond Rahman
 for all file to defect to topic mapping
 '''
-theCompleteCategFile='/Users/akond/Documents/AkondOneDrive/OneDrive/IaC-Defect-Categ-Project/output/New.Categ.csv'
-
-
+import csv
+theCompleteCategFile = '/Users/akond/Documents/AkondOneDrive/OneDrive/IaC-Defect-Categ-Project/output/New.Categ.csv'
+dataset_file         = "/Users/akond/Documents/AkondOneDrive/OneDrive/IaC-Defect-Prediction-Project/dataset/SYNTHETIC_MOZ_FULL_DATASET.csv"
 
 def mapTopicToFile(file2TopicProb):
   topic_and_file_dict = {}
@@ -24,7 +24,7 @@ def mapTopicToFile(file2TopicProb):
 
 def getPuppetFileList():
   list2ret = []
-  with open(datasetParam, 'rU') as f:
+  with open(dataset_file, 'rU') as f:
      reader_ = csv.reader(f)
      next(reader_, None)
      for row_ in reader_:
@@ -43,9 +43,9 @@ def getPuppetFileDetails():
         if full_path_of_file not in dictOfAllFiles:
             dictOfAllFiles[full_path_of_file] = [ categ_of_file ]
         else:
-            dictOfAllFiles[full_path_of_file][0] = dictOfAllFiles[full_path_of_file] + [ categ_of_file ]
+            dictOfAllFiles[full_path_of_file] = dictOfAllFiles[full_path_of_file] + [ categ_of_file ]
 
-    return dict2Ret
+    return dictOfAllFiles
 
 def mapTopic2DefectDensity(topic_file_param):
     topic_to_defect_categ_dict = {}
@@ -55,6 +55,7 @@ def mapTopic2DefectDensity(topic_file_param):
        for file_index in mappedFiles:
          file_ = allPuppFiles[file_index]
          defect_categ =  puppetFileDict[file_]
+         #print defect_categ
          if topic_ not in topic_to_defect_categ_dict:
             topic_to_defect_categ_dict[topic_] = [defect_categ]
          else:

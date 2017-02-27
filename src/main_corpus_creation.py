@@ -57,7 +57,6 @@ def executeTopicModeling(tokenTuple):
 
 
 
-
 print "Started at", utility.giveTimeStamp()
 print "-"*125
 dataset_file="/Users/akond/Documents/AkondOneDrive/OneDrive/IaC-Defect-Prediction-Project/dataset/SYNTHETIC_MOZ_FULL_DATASET.csv"
