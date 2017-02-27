@@ -4,7 +4,7 @@ topic modeling in IaC scripts
 Akond Rahman
 Feb 26, 2017
 '''
-import time, datetime, os, sys
+import time, datetime, os, sys, csv
 from gensim import corpora, models
 from collections import defaultdict
 
@@ -118,23 +118,25 @@ def dump_topic_modeling_metrics(datasetP, ndtDictP, ntDictP, tmDictP, dtmDictP):
      next(reader_, None)
      for row_ in reader_:
         file_name_  = row_[1]
-        ## 1. NDT OF  A FILE, SINGLE VALUE
-        NDT_Of_File = str(ndtDictP[file_name_])
-        ## 2. NT OF  A FILE, SINGLE VALUE
-        NT_Of_File  = str(ntDictP[file_name_])
-        ## 3. TM OF  A FILE, LIST OF VALUES
-        TM_Of_file  = tmDictP[file_name_]
-        TM_Of_file  = [str(x_)+',' for x_ in TM_Of_file]
-        ## 4. DTM OF  A FILE, LIST OF VALUES
-        DTM_Of_file = dtmDictP[file_name_]
-        DTM_Of_file = [str(y_)+',' for y_ in DTM_Of_file]
-        ## 5. REMOVE THE FILE NAME FROM THE ROW
-        row_ = [elem for elem in row_ if elem!=file_name_]
-        print "After removing file name:", row_
-        ## 6. REMOVE THE ORG NAME FROM THE ROW, WE DONT NEED IT AS THE DATASETS ARE SEPERATE
-        org_ = row_[0]
-        row_ = [elem_ for elem_ in row_ if elem!=org_]
-        print "After removing org. name:", row_
-        ## 7. convert list to a string of values
-        row2Write_ = [str(x_)+',' for x_ in row_]
-        print "Row to write:", row2Write_
+        if ((file_name_ in ndtDictP) and (file_name_ in ntDictP) and (file_name_ in tmDictP) and (file_name_ in dtmDictP)):
+            ## 1. NDT OF  A FILE, SINGLE VALUE
+            NDT_Of_File = str(ndtDictP[file_name_])
+            ## 2. NT OF  A FILE, SINGLE VALUE
+            NT_Of_File  = str(ntDictP[file_name_])
+            ## 3. TM OF  A FILE, LIST OF VALUES
+            TM_Of_file  = tmDictP[file_name_]
+            TM_Of_file  = [str(x_) for x_ in TM_Of_file]
+            ## 4. DTM OF  A FILE, LIST OF VALUES
+            DTM_Of_file = dtmDictP[file_name_]
+            DTM_Of_file = [str(y_) for y_ in DTM_Of_file]
+            ## 5. REMOVE THE FILE NAME FROM THE ROW
+            row_ = [elem for elem in row_ if elem!=file_name_]
+            #print "After removing file name:", row_
+            ## 6. REMOVE THE ORG NAME FROM THE ROW, WE DONT NEED IT AS THE DATASETS ARE SEPERATE
+            org_ = row_[0]
+            row_.remove(org_)
+            #print "After removing org. name:", row_
+            ## 7. convert list to a string of values
+            row2Write_ = [str(x_) for x_ in row_]
+            row2Write_ = [NDT_Of_File] + [NT_Of_File] + TM_Of_file + DTM_Of_file + row2Write_
+            print "Row to write:", row2Write_
