@@ -8,8 +8,8 @@ thsi file defect-based metrics needed for the paper
 
 
 def getShareOfDefects(topicToDefectParam):
-   as_defect_per_topic , b_defect_per_topic, c_defect_per_topic, d_defect_per_topic  = 0, 0, 0, 0
-   f_defect_per_topic,   i_defect_per_topic, o_defect_per_topic, t_defect_per_topic  = 0, 0, 0, 0
+   al_defect_per_topic, as_defect_per_topic , b_defect_per_topic, c_defect_per_topic  = 0, 0, 0, 0
+   d_defect_per_topic,  f_defect_per_topic,   i_defect_per_topic, t_defect_per_topic  = 0, 0, 0, 0
    o_defect_per_topic = 0
    tot_defect = 0
    dict_={}
