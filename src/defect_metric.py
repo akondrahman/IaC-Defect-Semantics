@@ -3,7 +3,7 @@ Akond Rahman
 Feb 26, 2017
 thsi file defect-based metrics needed for the paper
 '''
-import file_mapper
+import file_mapper, collections
 
 
 
