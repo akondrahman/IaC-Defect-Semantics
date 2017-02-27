@@ -120,7 +120,19 @@ def processDataset(datasetAsAListOfLists):
     str2Return = str2Return +  '\n'
   return str2Return
 
-def dump_topic_modeling_metrics(datasetP, ndtDictP, ntDictP, tmDictP, dtmDictP):
+
+
+def dumpContentIntoFile(strP, fileP):
+  fileToWrite = open( fileP, 'w');
+  fileToWrite.write(strP );
+  fileToWrite.close()
+  return str(os.stat(fileP).st_size)
+
+
+
+
+
+def dump_topic_modeling_metrics(datasetP, ndtDictP, ntDictP, tmDictP, dtmDictP, outputFileP):
   dataset_to_write = []
   with open(datasetP, 'rU') as f:
      reader_ = csv.reader(f)
@@ -155,4 +167,6 @@ def dump_topic_modeling_metrics(datasetP, ndtDictP, ntDictP, tmDictP, dtmDictP):
             #print "Row to write:", row2Write_
             dataset_to_write.append(row2Write_)
   str2Dump = processDataset(dataset_to_write)
-  print "This is what we will dump: \n", str2Dump
+  #print "This is what we will dump: \n", str2Dump
+  dump_stat = dumpContentIntoFile(str2Dump, outputFileP)
+  return dump_stat

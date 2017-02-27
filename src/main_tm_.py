@@ -82,8 +82,16 @@ def executeTopicModeling(tokenTuple, dataset_param):
       '''
       Now dump everything ... use the dataset file to iterate over
       '''
-      utility.dump_topic_modeling_metrics(dataset_param, ndt_for_file, nt_for_file, tm_for_file, dtm_for_file)
+      if('MOZ' in dataset_file)
+        suffix_ = '_TM_MOZ_DATASET.csv'
+      elif('WIKI' in dataset_file):
+        suffix_ = '_TM_WIKI_DATASET.csv'
+      else:
+        suffix_ = '_TM_OPENSTACK_DATASET.csv'
+      tm_dataset_to_save = str(indexCnt) + suffix_
+      dump_status = utility.dump_topic_modeling_metrics(dataset_param, ndt_for_file, nt_for_file, tm_for_file, dtm_for_file, tm_dataset_to_save)
       print "*"*75
+      print "Dumped a file of {} bytes".format(dump_status)
       print "#"*100
 
 
