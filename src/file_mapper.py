@@ -3,7 +3,7 @@ Feb 26, 2017
 Akond Rahman
 for all file to defect to topic mapping
 '''
-import csv
+import csv, collections
 theCompleteCategFile = '/Users/akond/Documents/AkondOneDrive/OneDrive/IaC-Defect-Categ-Project/output/New.Categ.csv'
 dataset_file         = "/Users/akond/Documents/AkondOneDrive/OneDrive/IaC-Defect-Prediction-Project/dataset/SYNTHETIC_MOZ_FULL_DATASET.csv"
 
@@ -67,5 +67,5 @@ def mapTopic2DefectDensity(topic_file_param):
         for elem_list in v_:
             for elem in elem_list:
                 tmp_.append(elem)
-        topic_to_categ_to_ret[k_] = tmp_
+        topic_to_categ_to_ret[k_] = collections.Counter(tmp_)
     return topic_to_categ_to_ret
