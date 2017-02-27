@@ -57,7 +57,7 @@ def getDensityOfDefectsForTopic(topicToDefectParam):
     topic_to_defect_density_   = {}
     allPuppFiles   = file_mapper.getPuppetFileList()
     puppetFileDict = file_mapper.getPuppetFileDetails()
-    for topic_, mappedFiles in topic_file_param.iteritems():
+    for topic_, mappedFiles in topicToDefectParam.iteritems():
        for file_index in mappedFiles:
          file_ = allPuppFiles[file_index]
          defect_categ =  puppetFileDict[file_]
@@ -77,7 +77,7 @@ def getDensityOfDefectsForTopic(topicToDefectParam):
                   tmp_.append(elem)
         tmp_dict[k_] = dict(collections.Counter(tmp_))
     ## we extracted thec ategories per each topic, lets use them to get the defetc density metric
-    for topic_, mappedFiles in topic_file_param.iteritems():
+    for topic_, mappedFiles in topicToDefectParam.iteritems():
        loc_per_topic    = 0
        defect_per_topic = 0
        for file_index in mappedFiles:
