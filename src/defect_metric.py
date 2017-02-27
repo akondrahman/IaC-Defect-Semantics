@@ -152,3 +152,19 @@ def getTMForFile(topic_file_dict_, count_of_files_in_corpus, topic_count_param, 
        prob_topic_holder.append(prob_of_this_topic)
     dict_file_TM[file_name] = prob_topic_holder
   return dict_file_TM
+def getNDTForFile(defect_density_, topic_file_dict_, count_of_files_in_corpus, topic_count_param, topicProbParam):
+  dict_file_DTM    = {}
+  median_, mean_   = getStatofValueDict(defect_density_)
+  allPuppFiles     = file_mapper.getPuppetFileList()
+  for file_index in xrange(count_of_files_in_corpus):
+    file_name      = allPuppFiles[file_index]
+    matchingTopics = getMatchedTopics(file_index, topic_file_dict_)
+    tmp_dtm_holder = []
+    for topicCnt in xrange(topic_count_param):
+       density_of_topic = defect_density_[topicCnt]
+       if ((topicCnt in matchingTopics) and (density_of_topic > mean_)):
+         prob_of_this_topic = file_mapper.getTopicProbOfTheTopic(topicCnt, topicProbParam, file_index)
+       else:
+         prob_of_this_topic = float(0)
+    dict_file_NDT[file_name] = tmp_ndt_holder
+  return dict_file_DTM
