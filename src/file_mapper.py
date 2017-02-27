@@ -22,6 +22,16 @@ def mapTopicToFile(file2TopicProb):
   return topic_and_file_dict
 
 
+def getPuppetFileList():
+  list2ret = []
+  with open(datasetParam, 'rU') as f:
+     reader_ = csv.reader(f)
+     next(reader_, None)
+     for row_ in reader_:
+       list2ret.append(row_[1])
+  return list2ret
+
+
 def getPuppetFileDetails():
     dictOfAllFiles={}
     with open(theCompleteCategFile, 'rU') as file_:
@@ -39,12 +49,14 @@ def getPuppetFileDetails():
 
 def mapTopic2DefectDensity(topic_file_param):
     topic_to_defect_categ_dict = {}
+    allPuppFiles = getPuppetFileList()
     puppetFileDict = getPuppetFileDetails()
     for topic_, mappedFiles in topic_file_param.iteritems():
-       for file_ in mappedFiles:
+       for file_index in mappedFiles:
+         file_ = allPuppFiles[file_index]
          defect_categ =  puppetFileDict[file_]
          if topic_ not in topic_to_defect_categ_dict:
             topic_to_defect_categ_dict[topic_] = [defect_categ]
          else:
             topic_to_defect_categ_dict[topic_] = topic_to_defect_categ_dict[topic_] + [defect_categ]
-    return topic_to_defect_categ_dict        
+    return topic_to_defect_categ_dict
