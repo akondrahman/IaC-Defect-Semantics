@@ -2,7 +2,11 @@
 Akond Rahman
 Feb 26, 2017
 '''
-import csv, utility, corpCreator
+import csv, utility, corpCreator, file_mapper
+topicCnt = 25
+#reff: https://radimrehurek.com/gensim/models/ldamodel.html
+
+
 def getTokensForTopicModeling(datasetParam):
    completeCorpus    = [] ## a list of lists with tokens from defected and non defected files
    defectedCorpus    = [] ## a list of lists with tokens from defected files
@@ -27,6 +31,7 @@ def getTokensForTopicModeling(datasetParam):
 
 
 
+
 def executeTopicModeling(tokenTuple):
    indexCnt=0
    for tokenList in tokenTuple:
@@ -36,12 +41,17 @@ def executeTopicModeling(tokenTuple):
       #print "Taking a peek", fully_processed_corpus[0]
       #print "="*100
       utility.createCorpusForLDA(fully_processed_corpus, str(indexCnt))
-      lda_topic_distr, file_to_topic_prob = utility.performLDA(str(indexCnt), 10)
-      print lda_topic_distr
+      lda_topic_distr, file_to_topic_prob = utility.performLDA(str(indexCnt), topicCnt)
+      #print lda_topic_distr
       print "*"*75
-      print file_to_topic_prob
-      print "*"*75
+      topic_file_dict_for_this_corpus = file_mapper.mapTopicToFile(file_to_topic_prob)
+      print topic_file_dict_for_this_corpus
+      print "entries in dict", len(topic_file_dict_for_this_corpus)
       print "#"*100
+
+
+
+
 
 print "Started at", utility.giveTimeStamp()
 print "-"*125
