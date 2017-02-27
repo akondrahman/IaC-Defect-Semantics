@@ -51,11 +51,16 @@ def executeTopicModeling(tokenTuple):
       #print "entries in dict", len(topic_file_dict_for_this_corpus)
       top2defect = file_mapper.mapTopic2Defects(topic_file_dict_for_this_corpus)
       #print top2defect
+      ### Metric-1 : Defect Share
       defect_share_of_topics   = defect_metric.getShareOfDefects(top2defect)
       #print defect_share_of_topics
       print "*"*75
+      ### Metric-2 : Defect density
       defect_density_of_topics = defect_metric.getDensityOfDefectsForTopic(topic_file_dict_for_this_corpus)
-      print defect_density_of_topics
+      #print defect_density_of_topics
+      ### Metric-3 : NDT for a file
+      ndt_for_file = defect_metric.getNDTForFile(defect_density_of_topics, topic_file_dict_for_this_corpus, len(tokenTuple))
+      print ndt_for_file
       #print "entries in dict", len(top2defect)
       print "*"*75
       print "#"*100

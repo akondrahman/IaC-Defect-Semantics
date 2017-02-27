@@ -3,7 +3,7 @@ Akond Rahman
 Feb 26, 2017
 thsi file defect-based metrics needed for the paper
 '''
-import file_mapper, collections
+import file_mapper, collections, numpy as np
 
 
 
@@ -90,3 +90,35 @@ def getDensityOfDefectsForTopic(topicToDefectParam):
           defect_per_topic = defect_per_topic + v_
        topic_to_defect_density_[topic_] = float(defect_per_topic) / float(loc_per_topic)
     return topic_to_defect_density_
+
+
+def getMatchedTopics(fileIndexParam, topicFileDictParam):
+    matchedTopicList = []
+    for topic_, fileList in topicFileDictParam.items():
+      for file_ in fileList:
+        if file_==fileIndexParam:
+          matchedTopicList.append(file_)
+    return matchedTopicList
+
+
+
+def getStatofValueDict(dictOfValues):
+    tmp_ = []
+    for k_, v_ in dictOfValues.items():
+      tmp_.append(v_)
+    return np.median(tmp_), np.mean(tmp_)
+def getNDTForFile(defect_density_, topic_file_dict_, count_of_files_in_corpus):
+  dict_file_NDT    = {}
+  median_, mean_   = getStatofValueDict(defect_density_)
+  allPuppFiles     = file_mapper.getPuppetFileList()
+  for file_index in xrange(count_of_files_in_corpus):
+    file_name      = allPuppFiles[file_index]
+    matchingTopics = getMatchedTopics(file_index)
+    tmp_ndt_holder = []
+    for mTop in matchingTopics:
+        density_of_topic = defect_density_[mTop]
+        if (density_of_topic > mean_):
+          tmp_ndt_holder.append(mTop)
+    dict_file_NDT[file_name] = tmp_ndt_holder
+
+  return dict_file_NDT
