@@ -44,7 +44,7 @@ def giveTimeStamp():
   return strToret
 def readKeywordFile(fileName):
     listToRet = [] ;
-    fileO = open(fileName, 'r');
+    fileO = open(fileName, 'rU');
     for line in fileO:
         line = line.strip('\n');
         line = line.strip('\t');

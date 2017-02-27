@@ -52,10 +52,10 @@ def getShareOfDefects(topicToDefectParam):
 
 
 
-def getDensityOfDefectsForTopic(topicToDefectParam):
+def getDensityOfDefectsForTopic(topicToDefectParam, datasetFileParam):
     topic_to_defect_categ_dict = {}
     topic_to_defect_density_   = {}
-    allPuppFiles   = file_mapper.getPuppetFileList()
+    allPuppFiles   = file_mapper.getPuppetFileList(datasetFileParam)
     puppetFileDict = file_mapper.getPuppetFileDetails()
     for topic_, mappedFiles in topicToDefectParam.iteritems():
        for file_index in mappedFiles:
@@ -107,10 +107,10 @@ def getStatofValueDict(dictOfValues):
     for k_, v_ in dictOfValues.items():
       tmp_.append(v_)
     return np.median(tmp_), np.mean(tmp_)
-def getNDTForFile(defect_density_, topic_file_dict_, count_of_files_in_corpus):
+def getNDTForFile(defect_density_, topic_file_dict_, count_of_files_in_corpus, datasetFileParam):
   dict_file_NDT    = {}
   median_, mean_   = getStatofValueDict(defect_density_)
-  allPuppFiles     = file_mapper.getPuppetFileList()
+  allPuppFiles     = file_mapper.getPuppetFileList(datasetFileParam)
   for file_index in xrange(count_of_files_in_corpus):
     file_name      = allPuppFiles[file_index]
     matchingTopics = getMatchedTopics(file_index, topic_file_dict_)
@@ -122,9 +122,9 @@ def getNDTForFile(defect_density_, topic_file_dict_, count_of_files_in_corpus):
     dict_file_NDT[file_name] = tmp_ndt_holder
 
   return dict_file_NDT
-def getNTForFile(topic_file_dict_, count_of_files_in_corpus):
+def getNTForFile(topic_file_dict_, count_of_files_in_corpus, datasetFileParam):
   dict_file_NT    = {}
-  allPuppFiles     = file_mapper.getPuppetFileList()
+  allPuppFiles     = file_mapper.getPuppetFileList(datasetFileParam)
   for file_index in xrange(count_of_files_in_corpus):
     file_name      = allPuppFiles[file_index]
     matchingTopics = getMatchedTopics(file_index, topic_file_dict_)
@@ -137,9 +137,9 @@ def getNTForFile(topic_file_dict_, count_of_files_in_corpus):
 
 
 
-def getTMForFile(topic_file_dict_, count_of_files_in_corpus, topic_count_param, topicProbParam):
+def getTMForFile(topic_file_dict_, count_of_files_in_corpus, topic_count_param, topicProbParam, datasetFileParam):
   dict_file_TM    = {}
-  allPuppFiles     = file_mapper.getPuppetFileList()
+  allPuppFiles     = file_mapper.getPuppetFileList(datasetFileParam)
   for file_index in xrange(count_of_files_in_corpus):
     file_name         = allPuppFiles[file_index]
     matchingTopics    = getMatchedTopics(file_index, topic_file_dict_)
@@ -152,10 +152,10 @@ def getTMForFile(topic_file_dict_, count_of_files_in_corpus, topic_count_param, 
        prob_topic_holder.append(prob_of_this_topic)
     dict_file_TM[file_name] = prob_topic_holder
   return dict_file_TM
-def getDTMForFile(defect_density_, topic_file_dict_, count_of_files_in_corpus, topic_count_param, topicProbParam):
+def getDTMForFile(defect_density_, topic_file_dict_, count_of_files_in_corpus, topic_count_param, topicProbParam, datasetFileParam):
   dict_file_DTM    = {}
   median_, mean_   = getStatofValueDict(defect_density_)
-  allPuppFiles     = file_mapper.getPuppetFileList()
+  allPuppFiles     = file_mapper.getPuppetFileList(datasetFileParam)
   for file_index in xrange(count_of_files_in_corpus):
     file_name      = allPuppFiles[file_index]
     matchingTopics = getMatchedTopics(file_index, topic_file_dict_)

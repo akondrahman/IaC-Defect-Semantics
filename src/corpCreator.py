@@ -37,7 +37,9 @@ def generateCorpus(rawTokenList):
     ## 13
     output_DelimiterRemoved = listHandler.removeDelimitersFromList(outputList_AllKeyWordsRemoved)
     ## 14
-    output_porter_stemmed = listHandler.format_using_stemmer(output_DelimiterRemoved)
+    output_utf              = listHandler.convertToUTF(output_DelimiterRemoved)
+    ## 15
+    output_stemmed          = listHandler.format_using_stemmer(output_utf)
     print "--------------------------- ALMOST THERE! ----------------------------"
-    print "I am done [:-)], current length of the list: ", len(output_porter_stemmed)
-    return output_porter_stemmed
+    print "I am done [:-)], current length of the list: ", len(output_stemmed)
+    return output_stemmed

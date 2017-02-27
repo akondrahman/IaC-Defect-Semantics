@@ -50,7 +50,7 @@ def executeTopicModeling(tokenTuple, dataset_param):
       ## spit out legit association (prob >= 0.10) of each file with a topic
       #print topic_file_dict_for_this_corpus
       #print "entries in dict", len(topic_file_dict_for_this_corpus)
-      top2defect = file_mapper.mapTopic2Defects(topic_file_dict_for_this_corpus)
+      top2defect = file_mapper.mapTopic2Defects(topic_file_dict_for_this_corpus, dataset_param)
       #print top2defect
       #print "entries in dict", len(top2defect)
       '''
@@ -61,23 +61,23 @@ def executeTopicModeling(tokenTuple, dataset_param):
       print "How do topics share defects? Ans:\n", defect_share_of_topics
       print "*"*75
       ### Metric-2 : Defect density
-      defect_density_of_topics = defect_metric.getDensityOfDefectsForTopic(topic_file_dict_for_this_corpus)
+      defect_density_of_topics = defect_metric.getDensityOfDefectsForTopic(topic_file_dict_for_this_corpus, dataset_param)
       print "What is the defect density of topics? Ans:\n", defect_density_of_topics
       print "*"*75
       '''
       file zone
       '''
       ### Metric-3 : NDT for a file
-      ndt_for_file = defect_metric.getNDTForFile(defect_density_of_topics, topic_file_dict_for_this_corpus, len(tokenList))
+      ndt_for_file = defect_metric.getNDTForFile(defect_density_of_topics, topic_file_dict_for_this_corpus, len(tokenList), dataset_param)
       ### Metric-4 : NT for a file
-      nt_for_file  = defect_metric.getNTForFile(topic_file_dict_for_this_corpus, len(tokenList))
+      nt_for_file  = defect_metric.getNTForFile(topic_file_dict_for_this_corpus, len(tokenList), dataset_param)
       #print "lol:\n", nt_for_file
       ### Metric-5 : TM for a file: tokenList is a list of lists, where the outher list corresponds to a file , inner list contains topic mapping
-      tm_for_file  = defect_metric.getTMForFile(topic_file_dict_for_this_corpus, len(tokenList), topicCnt, file_to_topic_prob)
+      tm_for_file  = defect_metric.getTMForFile(topic_file_dict_for_this_corpus, len(tokenList), topicCnt, file_to_topic_prob, dataset_param)
       #print "tm_for_file (as dict)", len(tm_for_file)
       #print "*"*75
       ### Metric - 6: DTM for a file, where the outher list corresponds to a file , inner list contains topic mapping
-      dtm_for_file = defect_metric.getDTMForFile(defect_density_of_topics, topic_file_dict_for_this_corpus, len(tokenList), topicCnt, file_to_topic_prob)
+      dtm_for_file = defect_metric.getDTMForFile(defect_density_of_topics, topic_file_dict_for_this_corpus, len(tokenList), topicCnt, file_to_topic_prob, dataset_param)
       #print "dtm_for_file (as dict)", dtm_for_file
       #print "*"*75
       '''
@@ -97,11 +97,10 @@ def executeTopicModeling(tokenTuple, dataset_param):
 
 
 
-
 print "Started at", utility.giveTimeStamp()
 print "-"*125
 dataset_file="/Users/akond/Documents/AkondOneDrive/OneDrive/IaC-Defect-Prediction-Project/dataset/SYNTHETIC_MOZ_FULL_DATASET.csv"
-#dataset_file="/Users/akond/Documents/AkondOneDrive/OneDrive/IaC-Defect-Prediction-Project/dataset/SYNTHETIC_WIKI_FULL_DATASET.csv"
+# dataset_file="/Users/akond/Documents/AkondOneDrive/OneDrive/IaC-Defect-Prediction-Project/dataset/SYNTHETIC_WIKI_FULL_DATASET.csv"
 all_three_corpuses = getTokensForTopicModeling(dataset_file)
 # full_corpus_only   = all_three_corpuses[2]
 print '-'*100

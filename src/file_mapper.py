@@ -5,7 +5,7 @@ for all file to defect to topic mapping
 '''
 import csv, collections
 theCompleteCategFile = '/Users/akond/Documents/AkondOneDrive/OneDrive/IaC-Defect-Categ-Project/output/New.Categ.csv'
-dataset_file         = "/Users/akond/Documents/AkondOneDrive/OneDrive/IaC-Defect-Prediction-Project/dataset/SYNTHETIC_MOZ_FULL_DATASET.csv"
+#dataset_file         = "/Users/akond/Documents/AkondOneDrive/OneDrive/IaC-Defect-Prediction-Project/dataset/SYNTHETIC_MOZ_FULL_DATASET.csv"
 
 def mapTopicToFile(file2TopicProb):
   topic_and_file_dict = {}
@@ -22,7 +22,7 @@ def mapTopicToFile(file2TopicProb):
   return topic_and_file_dict
 
 
-def getPuppetFileList():
+def getPuppetFileList(dataset_file):
   list2ret = []
   with open(dataset_file, 'rU') as f:
      reader_ = csv.reader(f)
@@ -47,10 +47,10 @@ def getPuppetFileDetails():
 
     return dictOfAllFiles
 
-def mapTopic2Defects(topic_file_param):
+def mapTopic2Defects(topic_file_param, datasetFileParam):
     topic_to_defect_categ_dict = {}
     topic_to_categ_to_ret = {}
-    allPuppFiles = getPuppetFileList()
+    allPuppFiles = getPuppetFileList(datasetFileParam)
     puppetFileDict = getPuppetFileDetails()
     for topic_, mappedFiles in topic_file_param.iteritems():
        for file_index in mappedFiles:

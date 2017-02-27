@@ -6,7 +6,7 @@ Feb 27, 2017
 '''
 import utility, token_pre_processor
 from nltk.stem.porter import PorterStemmer
-
+from nltk.stem.snowball import SnowballStemmer
 PuppetKeyWordFileName = 'PUPP_KW.txt'
 PuppetKeywordList = utility.readKeywordFile(PuppetKeyWordFileName)
 
@@ -150,7 +150,8 @@ def format_using_stemmer(listParam):
   #print len(listParam)
   output_list = []
   formatted_list = []
-  stemmer_obj = PorterStemmer()
+  #stemmer_obj = PorterStemmer()
+  stemmer_obj  = SnowballStemmer("english")
   for subList in listParam:
     formatted_list = [stemmer_obj.stem(token) for token in subList]
     output_list.append(formatted_list)
@@ -217,3 +218,16 @@ def splitDashes(listParam):
         finalList.append(tempList)
         tempList = []
     return finalList
+
+
+
+
+def convertToUTF(listParam):
+  #print len(listParam)
+  output_list = []
+  formatted_list = []
+  for subList in listParam:
+    formatted_list = [token.decode('utf-8', 'ignore') for token in subList]
+    output_list.append(formatted_list)
+    formatted_list = []
+  return output_list
