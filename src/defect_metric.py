@@ -113,7 +113,7 @@ def getNDTForFile(defect_density_, topic_file_dict_, count_of_files_in_corpus):
   allPuppFiles     = file_mapper.getPuppetFileList()
   for file_index in xrange(count_of_files_in_corpus):
     file_name      = allPuppFiles[file_index]
-    matchingTopics = getMatchedTopics(file_index)
+    matchingTopics = getMatchedTopics(file_index, topic_file_dict_)
     tmp_ndt_holder = []
     for mTop in matchingTopics:
         density_of_topic = defect_density_[mTop]
