@@ -4,7 +4,7 @@ Feb 26, 2017
 '''
 import csv, utility, corpCreator, file_mapper
 topicCnt = 25
-#reff: https://radimrehurek.com/gensim/models/ldamodel.html
+#reff: https://radimrehurek.com/gensim/models/ldamodel.html and https://radimrehurek.com/gensim/tut2.html
 
 
 def getTokensForTopicModeling(datasetParam):
@@ -42,11 +42,16 @@ def executeTopicModeling(tokenTuple):
       #print "="*100
       utility.createCorpusForLDA(fully_processed_corpus, str(indexCnt))
       lda_topic_distr, file_to_topic_prob = utility.performLDA(str(indexCnt), topicCnt)
+      ## spit out which tokens constitue each topic
       #print lda_topic_distr
       print "*"*75
       topic_file_dict_for_this_corpus = file_mapper.mapTopicToFile(file_to_topic_prob)
-      print topic_file_dict_for_this_corpus
-      print "entries in dict", len(topic_file_dict_for_this_corpus)
+      ## spit out legit association (prob >= 0.10) of each file with a topic
+      #print topic_file_dict_for_this_corpus
+      #print "entries in dict", len(topic_file_dict_for_this_corpus)
+      top2defect = file_mapper.mapTopic2DefectDensity(topic_file_dict_for_this_corpus)
+      print top2defect
+      print "entries in dict", len(top2defect)
       print "#"*100
 
 
