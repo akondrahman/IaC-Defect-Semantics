@@ -44,7 +44,7 @@ def executeTopicModeling(tokenTuple):
       lda_topic_distr, file_to_topic_prob = utility.performLDA(str(indexCnt), topicCnt)
       ## spit out which tokens constitue each topic
       #print lda_topic_distr
-      print "topic prob. dict=> \n", topicProbTuple_
+      #print "topic prob. dict=> \n", file_to_topic_prob
       print "*"*75
       topic_file_dict_for_this_corpus = file_mapper.mapTopicToFile(file_to_topic_prob)
       ## spit out legit association (prob >= 0.10) of each file with a topic

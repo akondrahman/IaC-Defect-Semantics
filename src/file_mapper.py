@@ -75,10 +75,12 @@ def mapTopic2Defects(topic_file_param):
 def getTopicProbOfTheTopic(topic_, topicProbTuple_, fileIndex_):
   probToRet = 0
   for cnt_ in xrange(len(topicProbTuple_)):
+     #print "lol: \n", topicProbTuple_[cnt_]
      if(cnt_ == fileIndex_):
         topicTuple = topicProbTuple_[cnt_]
-        topicIndex = topicTuple[0]
-        topicProb  = topicTuple[1]
-        if(topicIndex==topic_):
-          probToRet = topicProb
+        for elems in topicTuple:
+          topicIndex = elems[0]
+          topicProb  = elems[1]
+          if(topicIndex==topic_):
+            probToRet = topicProb
   return probToRet

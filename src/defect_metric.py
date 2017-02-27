@@ -144,7 +144,7 @@ def getTMForFile(topic_file_dict_, count_of_files_in_corpus, topic_count_param, 
     file_name         = allPuppFiles[file_index]
     matchingTopics    = getMatchedTopics(file_index, topic_file_dict_)
     prob_topic_holder = []
-    for topicCnt in topic_count_param:
+    for topicCnt in xrange(topic_count_param):
        if topicCnt in matchingTopics:
          prob_of_this_topic = file_mapper.getTopicProbOfTheTopic(topicCnt, topicProbParam, file_index)
        else:
