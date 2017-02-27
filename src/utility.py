@@ -112,17 +112,27 @@ def performLDA(corpusFileParam, topicNumParam):
 
 
 
+def processDataset(datasetAsAListOfLists):
+  str2Return=""
+  for list_ in datasetAsAListOfLists:
+    for elem in list_:
+        str2Return = str2Return + elem + ','
+    str2Return = str2Return +  '\n'
+  return str2Return
+
 def dump_topic_modeling_metrics(datasetP, ndtDictP, ntDictP, tmDictP, dtmDictP):
+  dataset_to_write = []
   with open(datasetP, 'rU') as f:
      reader_ = csv.reader(f)
      next(reader_, None)
      for row_ in reader_:
         file_name_  = row_[1]
         if ((file_name_ in ndtDictP) and (file_name_ in ntDictP) and (file_name_ in tmDictP) and (file_name_ in dtmDictP)):
-            ## 1. NDT OF  A FILE, SINGLE VALUE
-            NDT_Of_File = str(ndtDictP[file_name_])
-            ## 2. NT OF  A FILE, SINGLE VALUE
-            NT_Of_File  = str(ntDictP[file_name_])
+            row2Write_ = []
+            ## 1. NDT OF  A FILE, LIST OF VALUES
+            NDT_Of_File = str(len(ndtDictP[file_name_]))
+            ## 2. NT OF  A FILE, LIST OF VALUES
+            NT_Of_File  = str(len(ntDictP[file_name_]))
             ## 3. TM OF  A FILE, LIST OF VALUES
             TM_Of_file  = tmDictP[file_name_]
             TM_Of_file  = [str(x_) for x_ in TM_Of_file]
@@ -137,6 +147,12 @@ def dump_topic_modeling_metrics(datasetP, ndtDictP, ntDictP, tmDictP, dtmDictP):
             row_.remove(org_)
             #print "After removing org. name:", row_
             ## 7. convert list to a string of values
-            row2Write_ = [str(x_) for x_ in row_]
-            row2Write_ = [NDT_Of_File] + [NT_Of_File] + TM_Of_file + DTM_Of_file + row2Write_
-            print "Row to write:", row2Write_
+            staticMetricsToWrite_ = [str(x_) for x_ in row_]
+            row2Write_.append(file_name_)
+            row2Write_.append(NDT_Of_File)
+            row2Write_.append(NT_Of_File)
+            row2Write_            = row2Write_ + TM_Of_file + DTM_Of_file + staticMetricsToWrite_
+            #print "Row to write:", row2Write_
+            dataset_to_write.append(row2Write_)
+  str2Dump = processDataset(dataset_to_write)
+  print "This is what we will dump: \n", str2Dump
