@@ -47,7 +47,7 @@ def getPuppetFileDetails():
 
     return dictOfAllFiles
 
-def mapTopic2DefectDensity(topic_file_param):
+def mapTopic2Defects(topic_file_param):
     topic_to_defect_categ_dict = {}
     topic_to_categ_to_ret = {}
     allPuppFiles = getPuppetFileList()

@@ -2,7 +2,7 @@
 Akond Rahman
 Feb 26, 2017
 '''
-import csv, utility, corpCreator, file_mapper
+import csv, utility, corpCreator, file_mapper, defect_metric
 topicCnt = 25
 #reff: https://radimrehurek.com/gensim/models/ldamodel.html and https://radimrehurek.com/gensim/tut2.html
 
@@ -49,10 +49,12 @@ def executeTopicModeling(tokenTuple):
       ## spit out legit association (prob >= 0.10) of each file with a topic
       #print topic_file_dict_for_this_corpus
       #print "entries in dict", len(topic_file_dict_for_this_corpus)
-      top2defect = file_mapper.mapTopic2DefectDensity(topic_file_dict_for_this_corpus)
-      print top2defect
+      top2defect = file_mapper.mapTopic2Defects(topic_file_dict_for_this_corpus)
+      #print top2defect
+      defect_share_of_topics = defect_metric.getShareOfDefects(top2defect)
+      print defect_share_of_topics
       print "*"*75
-      print "entries in dict", len(top2defect)
+      #print "entries in dict", len(top2defect)
       print "*"*75
       print "#"*100
 
@@ -64,7 +66,9 @@ print "-"*125
 dataset_file="/Users/akond/Documents/AkondOneDrive/OneDrive/IaC-Defect-Prediction-Project/dataset/SYNTHETIC_MOZ_FULL_DATASET.csv"
 #dataset_file="/Users/akond/Documents/AkondOneDrive/OneDrive/IaC-Defect-Prediction-Project/dataset/SYNTHETIC_WIKI_FULL_DATASET.csv"
 all_three_corpuses = getTokensForTopicModeling(dataset_file)
+full_corpus        = all_three_corpuses[2]
 print '-'*125
-executeTopicModeling(all_three_corpuses)
+# executeTopicModeling(all_three_corpuses)
+executeTopicModeling(full_corpus)
 print '-'*125
 print "Ended at", utility.giveTimeStamp()
