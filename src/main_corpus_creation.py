@@ -66,9 +66,9 @@ print "-"*125
 dataset_file="/Users/akond/Documents/AkondOneDrive/OneDrive/IaC-Defect-Prediction-Project/dataset/SYNTHETIC_MOZ_FULL_DATASET.csv"
 #dataset_file="/Users/akond/Documents/AkondOneDrive/OneDrive/IaC-Defect-Prediction-Project/dataset/SYNTHETIC_WIKI_FULL_DATASET.csv"
 all_three_corpuses = getTokensForTopicModeling(dataset_file)
-full_corpus        = all_three_corpuses[2]
+# full_corpus        = all_three_corpuses[2]
 print '-'*125
-# executeTopicModeling(all_three_corpuses)
-executeTopicModeling(full_corpus)
+executeTopicModeling(all_three_corpuses)
+# executeTopicModeling(full_corpus)
 print '-'*125
 print "Ended at", utility.giveTimeStamp()
