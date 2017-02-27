@@ -67,5 +67,5 @@ def mapTopic2DefectDensity(topic_file_param):
         for elem_list in v_:
             for elem in elem_list:
                 tmp_.append(elem)
-        topic_to_categ_to_ret[k_] = collections.Counter(tmp_)
+        topic_to_categ_to_ret[k_] = dict(collections.Counter(tmp_))
     return topic_to_categ_to_ret
