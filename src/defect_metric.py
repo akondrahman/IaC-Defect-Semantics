@@ -3,7 +3,7 @@ Akond Rahman
 Feb 26, 2017
 thsi file defect-based metrics needed for the paper
 '''
-
+import file_mapper
 
 
 
@@ -47,3 +47,46 @@ def getShareOfDefects(topicToDefectParam):
      topic_defect_share_dict[topic_] = float(defect_share_topic)/float(tot_defect)
 
    return topic_defect_share_dict
+
+
+
+
+
+def getDensityOfDefectsForTopic(topicToDefectParam):
+    topic_to_defect_categ_dict = {}
+    topic_to_defect_density_   = {}
+    allPuppFiles   = file_mapper.getPuppetFileList()
+    puppetFileDict = file_mapper.getPuppetFileDetails()
+    for topic_, mappedFiles in topic_file_param.iteritems():
+       for file_index in mappedFiles:
+         file_ = allPuppFiles[file_index]
+         defect_categ =  puppetFileDict[file_]
+         #print defect_categ
+         if topic_ not in topic_to_defect_categ_dict:
+            topic_to_defect_categ_dict[topic_] = [defect_categ]
+         else:
+            topic_to_defect_categ_dict[topic_] = topic_to_defect_categ_dict[topic_] + [defect_categ]
+    ## convert list of lists to one single list
+    ## this dictionary holds topic to category mapping
+    tmp_dict={}
+    for k_, v_ in topic_to_defect_categ_dict.items():
+        tmp_=[]
+        for elem_list in v_:
+            for elem in elem_list:
+                if elem !='N':
+                  tmp_.append(elem)
+        tmp_dict[k_] = dict(collections.Counter(tmp_))
+    ## we extracted thec ategories per each topic, lets use them to get the defetc density metric
+    for topic_, mappedFiles in topic_file_param.iteritems():
+       loc_per_topic    = 0
+       defect_per_topic = 0
+       for file_index in mappedFiles:
+         file_          = allPuppFiles[file_index]
+         sloc_file_     = sum(1 for line in open(file_))
+         loc_per_topic  = loc_per_topic + sloc_file_
+       categories = tmp_dict[topic_]
+       ## this is the dictioanry of categories only: each ket is a category
+       for k_, v_ in categories.items():
+          defect_per_topic = defect_per_topic + v_
+       topic_to_defect_density_[topic_] = float(defect_per_topic) / float(loc_per_topic)
+    return topic_to_defect_density_
