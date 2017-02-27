@@ -54,15 +54,16 @@ def executeTopicModeling(tokenTuple, dataset_param):
       #print top2defect
       #print "entries in dict", len(top2defect)
       '''
-      defect sensity zone
+      topic zone
       '''
       ### Metric-1 : Defect Share
       defect_share_of_topics   = defect_metric.getShareOfDefects(top2defect)
-      #print defect_share_of_topics
+      print "How do topics share defects? Ans:\n", defect_share_of_topics
       print "*"*75
       ### Metric-2 : Defect density
       defect_density_of_topics = defect_metric.getDensityOfDefectsForTopic(topic_file_dict_for_this_corpus)
-      #print defect_density_of_topics
+      print "What is the defect density of topics? Ans:\n", defect_density_of_topics
+      print "*"*75
       '''
       file zone
       '''
@@ -82,7 +83,7 @@ def executeTopicModeling(tokenTuple, dataset_param):
       '''
       Now dump everything ... use the dataset file to iterate over
       '''
-      if('MOZ' in dataset_file)
+      if('MOZ' in dataset_file):
         suffix_ = '_TM_MOZ_DATASET.csv'
       elif('WIKI' in dataset_file):
         suffix_ = '_TM_WIKI_DATASET.csv'
@@ -102,9 +103,9 @@ print "-"*125
 dataset_file="/Users/akond/Documents/AkondOneDrive/OneDrive/IaC-Defect-Prediction-Project/dataset/SYNTHETIC_MOZ_FULL_DATASET.csv"
 #dataset_file="/Users/akond/Documents/AkondOneDrive/OneDrive/IaC-Defect-Prediction-Project/dataset/SYNTHETIC_WIKI_FULL_DATASET.csv"
 all_three_corpuses = getTokensForTopicModeling(dataset_file)
-# full_corpus        = all_three_corpuses[2]
-print '-'*125
+# full_corpus_only   = all_three_corpuses[2]
+print '-'*100
 executeTopicModeling(all_three_corpuses, dataset_file)
-# executeTopicModeling(full_corpus)
+# executeTopicModeling(full_corpus_only, dataset_file)
 print '-'*125
 print "Ended at", utility.giveTimeStamp()

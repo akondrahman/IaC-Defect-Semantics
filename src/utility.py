@@ -98,11 +98,11 @@ def createCorpusForLDA(listParam, fileNameParam):
 
 
 def performLDA(corpusFileParam, topicNumParam):
-    dictFileToRead  =  corpusFileParam+'.dict'
+    dictFileToRead  = corpusFileParam+'.dict'
     mmFileToread    = corpusFileParam + '.mm'
     dictToUse       = corpora.Dictionary.load(dictFileToRead)
     corpToUse       = corpora.MmCorpus(mmFileToread)
-    #print "Doing LDA model ..."
+    print "Doing LDA model ..."
     ## the follwong line take a lot of time for large number of documents
     fittedLDAModel  = models.LdaModel(corpToUse, num_topics=topicNumParam, id2word=dictToUse)
     corpus_LDA      = fittedLDAModel[corpToUse] # create a double wrapper over the original corpus: bow->tfidf->fold-in-lsi
