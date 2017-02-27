@@ -97,7 +97,7 @@ def getMatchedTopics(fileIndexParam, topicFileDictParam):
     for topic_, fileList in topicFileDictParam.items():
       for file_ in fileList:
         if file_==fileIndexParam:
-          matchedTopicList.append(file_)
+          matchedTopicList.append(topic_)
     return matchedTopicList
 
 

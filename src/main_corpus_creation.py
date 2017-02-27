@@ -59,8 +59,8 @@ def executeTopicModeling(tokenTuple):
       defect_density_of_topics = defect_metric.getDensityOfDefectsForTopic(topic_file_dict_for_this_corpus)
       #print defect_density_of_topics
       ### Metric-3 : NDT for a file
-      ndt_for_file = defect_metric.getNDTForFile(defect_density_of_topics, topic_file_dict_for_this_corpus, len(tokenTuple))
-      print ndt_for_file
+      ndt_for_file = defect_metric.getNDTForFile(defect_density_of_topics, topic_file_dict_for_this_corpus, len(tokenList))
+      print "lol:\n", ndt_for_file
       #print "entries in dict", len(top2defect)
       print "*"*75
       print "#"*100
