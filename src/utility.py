@@ -109,3 +109,32 @@ def performLDA(corpusFileParam, topicNumParam):
     ### let us print the words that constitue a topic
     topic_distr_to_print  = fittedLDAModel.print_topics(topicNumParam)
     return topic_distr_to_print, corpus_LDA
+
+
+
+def dump_topic_modeling_metrics(datasetP, ndtDictP, ntDictP, tmDictP, dtmDictP):
+  with open(datasetP, 'rU') as f:
+     reader_ = csv.reader(f)
+     next(reader_, None)
+     for row_ in reader_:
+        file_name_  = row_[1]
+        ## 1. NDT OF  A FILE, SINGLE VALUE
+        NDT_Of_File = str(ndtDictP[file_name_])
+        ## 2. NT OF  A FILE, SINGLE VALUE
+        NT_Of_File  = str(ntDictP[file_name_])
+        ## 3. TM OF  A FILE, LIST OF VALUES
+        TM_Of_file  = tmDictP[file_name_]
+        TM_Of_file  = [str(x_)+',' for x_ in TM_Of_file]
+        ## 4. DTM OF  A FILE, LIST OF VALUES
+        DTM_Of_file = dtmDictP[file_name_]
+        DTM_Of_file = [str(y_)+',' for y_ in DTM_Of_file]
+        ## 5. REMOVE THE FILE NAME FROM THE ROW
+        row_ = [elem for elem in row_ if elem!=file_name_]
+        print "After removing file name:", row_
+        ## 6. REMOVE THE ORG NAME FROM THE ROW, WE DONT NEED IT AS THE DATASETS ARE SEPERATE
+        org_ = row_[0]
+        row_ = [elem_ for elem_ in row_ if elem!=org_]
+        print "After removing org. name:", row_
+        ## 7. convert list to a string of values
+        row2Write_ = [str(x_)+',' for x_ in row_]
+        print "Row to write:", row2Write_

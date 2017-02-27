@@ -32,7 +32,7 @@ def getTokensForTopicModeling(datasetParam):
 
 
 
-def executeTopicModeling(tokenTuple):
+def executeTopicModeling(tokenTuple, dataset_param):
    indexCnt=0
    for tokenList in tokenTuple:
       indexCnt = indexCnt + 1
@@ -77,7 +77,12 @@ def executeTopicModeling(tokenTuple):
       #print "*"*75
       ### Metric - 6: DTM for a file, where the outher list corresponds to a file , inner list contains topic mapping
       dtm_for_file = defect_metric.getDTMForFile(defect_density_of_topics, topic_file_dict_for_this_corpus, len(tokenList), topicCnt, file_to_topic_prob)
-      print "dtm_for_file (as dict)", dtm_for_file
+      #print "dtm_for_file (as dict)", dtm_for_file
+      #print "*"*75
+      '''
+      Now dump everything ... use the dataset file to iterate over
+      '''
+      utility.dump_topic_modeling_metrics(dataset_param, ndt_for_file, nt_for_file, tm_for_file, dtm_for_file)
       print "*"*75
       print "#"*100
 
@@ -91,7 +96,7 @@ dataset_file="/Users/akond/Documents/AkondOneDrive/OneDrive/IaC-Defect-Predictio
 all_three_corpuses = getTokensForTopicModeling(dataset_file)
 # full_corpus        = all_three_corpuses[2]
 print '-'*125
-executeTopicModeling(all_three_corpuses)
+executeTopicModeling(all_three_corpuses, dataset_file)
 # executeTopicModeling(full_corpus)
 print '-'*125
 print "Ended at", utility.giveTimeStamp()
