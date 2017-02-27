@@ -152,7 +152,7 @@ def getTMForFile(topic_file_dict_, count_of_files_in_corpus, topic_count_param, 
        prob_topic_holder.append(prob_of_this_topic)
     dict_file_TM[file_name] = prob_topic_holder
   return dict_file_TM
-def getNDTForFile(defect_density_, topic_file_dict_, count_of_files_in_corpus, topic_count_param, topicProbParam):
+def getDTMForFile(defect_density_, topic_file_dict_, count_of_files_in_corpus, topic_count_param, topicProbParam):
   dict_file_DTM    = {}
   median_, mean_   = getStatofValueDict(defect_density_)
   allPuppFiles     = file_mapper.getPuppetFileList()
@@ -166,5 +166,6 @@ def getNDTForFile(defect_density_, topic_file_dict_, count_of_files_in_corpus, t
          prob_of_this_topic = file_mapper.getTopicProbOfTheTopic(topicCnt, topicProbParam, file_index)
        else:
          prob_of_this_topic = float(0)
-    dict_file_NDT[file_name] = tmp_ndt_holder
+       tmp_dtm_holder.append(prob_of_this_topic)
+    dict_file_DTM[file_name] = tmp_dtm_holder
   return dict_file_DTM
