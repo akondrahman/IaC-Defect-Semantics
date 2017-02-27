@@ -128,9 +128,9 @@ def getNTForFile(topic_file_dict_, count_of_files_in_corpus):
   for file_index in xrange(count_of_files_in_corpus):
     file_name      = allPuppFiles[file_index]
     matchingTopics = getMatchedTopics(file_index, topic_file_dict_)
-    tmp_ndt_holder = []
+    tmp_nt_holder = []
     for mTop in matchingTopics:
-          tmp_ndt_holder.append(mTop)
-    dict_file_NDT[file_name] = tmp_ndt_holder
+          tmp_nt_holder.append(mTop)
+    dict_file_NT[file_name] = tmp_nt_holder
 
   return dict_file_NT
