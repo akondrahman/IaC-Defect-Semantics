@@ -2,7 +2,7 @@
 Akond Rahman
 Feb 26, 2017
 '''
-import csv, utility, corpCreator, file_mapper, defect_metric
+import csv, utility, tokenization_preprocessor
 topicCnt = 50
 #reff: https://radimrehurek.com/gensim/models/ldamodel.html and https://radimrehurek.com/gensim/tut2.html
 
@@ -43,7 +43,7 @@ def executeTopicModeling(tokenTuple, dataset_param):
       utility.createCorpusForLDA(fully_processed_corpus, str(indexCnt))
       lda_topic_distr, file_to_topic_prob = utility.performLDA(str(indexCnt), topicCnt)
       ## spit out which tokens constitue each topic
-      #print lda_topic_distr
+      print lda_topic_distr
       #print "topic prob. dict=> \n", file_to_topic_prob
       print "*"*75
       topic_file_dict_for_this_corpus = file_mapper.mapTopicToFile(file_to_topic_prob)

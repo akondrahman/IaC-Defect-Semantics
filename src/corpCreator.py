@@ -11,6 +11,7 @@ def generateCorpus(rawTokenList):
     ###Order of execution is extremely important
     ## 1
     outputList_NumeralsRemoved = listHandler.removeNumeralsFromList(rawTokenList)
+    #print "taking a peek (numerals removed):", outputList_NumeralsRemoved[0]
     ## 2
     outputList_UnderscoreHandled = listHandler.splitUnderscores(outputList_NumeralsRemoved)
     ## 3
