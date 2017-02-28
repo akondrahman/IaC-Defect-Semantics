@@ -161,7 +161,10 @@ def getDTMForFile(defect_density_, topic_file_dict_, count_of_files_in_corpus, t
     matchingTopics = getMatchedTopics(file_index, topic_file_dict_)
     tmp_dtm_holder = []
     for topicCnt in xrange(topic_count_param):
-       density_of_topic = defect_density_[topicCnt]
+       if topicCnt in defect_density_:
+         density_of_topic = defect_density_[topicCnt]
+       else:
+         density_of_topic = float(0)           
        if ((topicCnt in matchingTopics) and (density_of_topic > mean_)):
          prob_of_this_topic = file_mapper.getTopicProbOfTheTopic(topicCnt, topicProbParam, file_index)
        else:
