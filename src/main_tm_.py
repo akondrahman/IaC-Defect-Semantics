@@ -3,7 +3,7 @@ Akond Rahman
 Feb 26, 2017
 '''
 import csv, utility, corpCreator, file_mapper, defect_metric
-topicCnt = 25
+topicCnt = 50
 #reff: https://radimrehurek.com/gensim/models/ldamodel.html and https://radimrehurek.com/gensim/tut2.html
 
 
@@ -106,5 +106,6 @@ all_three_corpuses = getTokensForTopicModeling(dataset_file)
 print '-'*100
 executeTopicModeling(all_three_corpuses, dataset_file)
 # executeTopicModeling(full_corpus_only, dataset_file)
+print "Topic count was", topicCnt
 print '-'*125
 print "Ended at", utility.giveTimeStamp()
