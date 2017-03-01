@@ -48,7 +48,7 @@ def executeTokenization(tokenTuple, labels):
   # appears in the training set
   #for word_, count_ in zip(feature_names, dist):
   #  print "word:[{}]--->count:[{}]".format(word_, count_)
-  tokenization_predictor.performPrediction(all_features, labels)
+  tokenization_predictor.performPrediction(all_features, labels, feature_names)
   print "="*100
 
 
