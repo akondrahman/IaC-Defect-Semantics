@@ -4,7 +4,7 @@ Tokenization based predcition
 Feb 28, 2017
 '''
 from sklearn import decomposition
-import numpy as np
+import numpy as np, sklearn_models
 pca_comp = 500
 for_feature_selection = 141
 ### as output: Prin. comp#141, ( indi) explained variance:0.000172766505915, total explained variance:0.990101958387
@@ -12,7 +12,7 @@ topComponentCount = 5 ### top five components for the time being
 
 def printPCAInsights(pcaParamObj, no_feat_param):
     top_components_index = np.abs(pcaParamObj.components_[no_feat_param]).argsort()[::-1][:no_feat_param]
-    print "The top {} componets are:{}".format(no_feat_param, top_components_index)
+    print "The top {} componets' indicies are:{}".format(no_feat_param, top_components_index)
 
 def performPrediction(allFeatures, allLabels):
     '''
