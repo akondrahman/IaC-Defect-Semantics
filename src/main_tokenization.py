@@ -3,7 +3,7 @@ Akond Rahman
 Feb 28, 2017
 bag of words technique
 '''
-import csv, utility, tokenization_preprocessor, numpy as np
+import csv, utility, tokenization_preprocessor, numpy as np, tokenization_predictor
 from sklearn.feature_extraction.text import CountVectorizer
 
 
@@ -28,7 +28,7 @@ def getTokensForTokenization(datasetParam):
    return completeCorpus, completeLabels
 
 
-def executeTokenization(tokenTuple):
+def executeTokenization(tokenTuple, labels):
   iac_vectorizer = CountVectorizer(min_df=1)
   all_features  = iac_vectorizer.fit_transform(tokenTuple)
   ###print fitted_model
@@ -46,8 +46,9 @@ def executeTokenization(tokenTuple):
   dist = np.sum(all_features, axis=0)
   # Step-3: For each, print the vocabulary word and the number of times it
   # appears in the training set
-  for word_, count_ in zip(feature_names, dist):
-     print "word:[{}]--->count:[{}]".format(word_, count_)
+  #for word_, count_ in zip(feature_names, dist):
+  #  print "word:[{}]--->count:[{}]".format(word_, count_)
+  tokenization_predictor.performPrediction(all_features, labels)
   print "="*100
 
 
@@ -59,6 +60,6 @@ dataset_file="/Users/akond/Documents/AkondOneDrive/OneDrive/IaC-Defect-Predictio
 ### this is a lsit of strings ... each string si pre-processed , and correpsonds to all tokens of a file
 unfilteredTokensFromFile, defectLabels = getTokensForTokenization(dataset_file)
 #print "tokens:{}, labels:{}".format(unfilteredTokensFromFile, defectLabels)
-executeTokenization(unfilteredTokensFromFile)
+executeTokenization(unfilteredTokensFromFile, defectLabels)
 print "Ended at", utility.giveTimeStamp()
 print "-"*125
