@@ -55,8 +55,8 @@ def executeTokenization(tokenTuple, labels):
 
 print "Started at", utility.giveTimeStamp()
 print "-"*125
-dataset_file="/Users/akond/Documents/AkondOneDrive/OneDrive/IaC-Defect-Prediction-Project/dataset/SYNTHETIC_MOZ_FULL_DATASET.csv"
-# dataset_file="/Users/akond/Documents/AkondOneDrive/OneDrive/IaC-Defect-Prediction-Project/dataset/SYNTHETIC_WIKI_FULL_DATASET.csv"
+# dataset_file="/Users/akond/Documents/AkondOneDrive/OneDrive/IaC-Defect-Prediction-Project/dataset/SYNTHETIC_MOZ_FULL_DATASET.csv"
+dataset_file="/Users/akond/Documents/AkondOneDrive/OneDrive/IaC-Defect-Prediction-Project/dataset/SYNTHETIC_WIKI_FULL_DATASET.csv"
 ### this is a lsit of strings ... each string si pre-processed , and correpsonds to all tokens of a file
 unfilteredTokensFromFile, defectLabels = getTokensForTokenization(dataset_file)
 #print "tokens:{}, labels:{}".format(unfilteredTokensFromFile, defectLabels)

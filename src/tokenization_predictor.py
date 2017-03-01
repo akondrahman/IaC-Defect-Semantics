@@ -32,7 +32,7 @@ def performPrediction(allFeatures, allLabels, featureNames):
     for index_ in xrange(len(variance_ratio_of_features)):
        var_exp_ = variance_ratio_of_features[index_]
        totalvarExplained = totalvarExplained + var_exp_
-       #print "Prin. comp#{}, ( indi) explained variance:{}, total explained variance:{}".format(index_+1, var_exp_, totalvarExplained)
+       print "Prin. comp#{}, ( indi) explained variance:{}, total explained variance:{}".format(index_+1, var_exp_, totalvarExplained)
 
     no_features_to_use = for_feature_selection
     print "Of all the features, we will use:", no_features_to_use
