@@ -14,7 +14,7 @@ from sklearn.metrics import classification_report, roc_auc_score, mean_absolute_
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn import linear_model
-import Utility
+import utility
 
 def dumpPredPerfValuesToFile(iterations, predPerfVector, fileName):
    str2write=''
@@ -23,7 +23,7 @@ def dumpPredPerfValuesToFile(iterations, predPerfVector, fileName):
      prec_  = predPerfVector[1][cnt]
      recal  = predPerfVector[2][cnt]
      str2write = str2write + str(auc_) + ',' + str(prec_) + ',' + str(recal) + ',' + '\n'
-   bytes_ = Utility.dumpContentIntoFile(str2write, fileName)
+   bytes_ = utility.dumpContentIntoFile(str2write, fileName)
    print "Created {} of {} bytes".format(fileName, bytes_)
 
 

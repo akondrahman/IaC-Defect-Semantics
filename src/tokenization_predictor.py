@@ -43,4 +43,4 @@ def performPrediction(allFeatures, allLabels):
     '''
     lets start prediction , now that we ahve feature selection otu of the way
     '''
-    sklearn_models.performModeling(selected_features, all_labels, 10)
+    sklearn_models.performModeling(selected_features, allLabels, 10)
