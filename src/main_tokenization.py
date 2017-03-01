@@ -3,7 +3,7 @@ Akond Rahman
 Feb 28, 2017
 bag of words technique
 '''
-import csv, utility, tokenization_preprocessor
+import csv, utility, tokenization_preprocessor, numpy as np
 from sklearn.feature_extraction.text import CountVectorizer
 
 
@@ -34,7 +34,23 @@ def executeTokenization(tokenTuple):
   ###print fitted_model
   ## get feature names
   feature_names = iac_vectorizer.get_feature_names()
-  print "The words are:", feature_names
+  #print "The words are:", feature_names
+  print "Total number fo features used:", len(feature_names)
+  print "="*100
+  '''
+  check the freequnecy of each word ... needed for sanity check
+  '''
+  # Step-1: convert to array
+  all_features = all_features.toarray()
+  # Step-2:Sum up the counts of each vocabulary word
+  dist = np.sum(all_features, axis=0)
+  # Step-3: For each, print the vocabulary word and the number of times it
+  # appears in the training set
+  for word_, count_ in zip(feature_names, dist):
+     print "word:[{}]--->count:[{}]".format(word_, count_)
+  print "="*100
+
+
 
 print "Started at", utility.giveTimeStamp()
 print "-"*125
