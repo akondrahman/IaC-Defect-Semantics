@@ -14,7 +14,7 @@ def getTokensForTokenization(datasetParam):
      reader_ = csv.reader(f)
      next(reader_, None)
      for row in reader_:
-       defectStatus = row[20]
+       defectStatus = int(row[20])  ### need to convert to int , otherwise gives error for sklearn.are_under_roc
        fileToRead   = row[1]
        fileContentAsStr = utility.giveCommentFreeFileContent(fileToRead)
        #print "!"*75

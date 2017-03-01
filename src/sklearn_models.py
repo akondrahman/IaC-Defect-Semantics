@@ -30,6 +30,8 @@ def dumpPredPerfValuesToFile(iterations, predPerfVector, fileName):
 
 
 def evalClassifier(actualLabels, predictedLabels):
+  #actualLabels     = [int(x) for x in actualLabels]
+  #predictedLabels  = [int(x) for x in predictedLabels]
   '''
     the way skelarn treats is the following: first index -> lower index -> 0 -> 'Low'
                                              next index after first  -> next lower index -> 1 -> 'high'
@@ -38,16 +40,14 @@ def evalClassifier(actualLabels, predictedLabels):
   '''
     peeking into the labels of the dataset
   '''
-  #print "Glimpse at  actual:{}, and predicted:{} labels(10th entry in label list)".format(actualLabels[10], predictedLabels[10])
+  print "Glimpse at  actual:{}, and predicted:{} labels(10th entry in label list)".format(actualLabels[10], predictedLabels[10])
   print classification_report(actualLabels, predictedLabels, target_names=target_labels)
   print">"*25
   '''
   getting the confusion matrix
   '''
-  #conf_matr_output = confusion_matrix(actualLabels, predictedLabels)
+  conf_matr_output = confusion_matrix(actualLabels, predictedLabels)
   print "Confusion matrix start"
-  #print conf_matr_output
-  conf_matr_output = pd.crosstab(actualLabels, predictedLabels, rownames=['True'], colnames=['Predicted'], margins=True)
   print conf_matr_output
   print "Confusion matrix end"
   # preserve the order first test(real values from dataset), then predcited (from the classifier )
