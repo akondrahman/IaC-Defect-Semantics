@@ -10,16 +10,19 @@ import operator
 def getPCAsToExplore(dataset_length, count_vec_flag_param):
     if count_vec_flag_param:
        explore_dict={1383:500, 580:200, 296:150, 180:100, 66:50, 165:100, 286:150, 1142:500, 294:150}
-       #explore_dict={7807:750, 3074:500, 972:500}
 
        use_dict={1383:400, 580:140, 296:130, 180:50, 66:16, 165:50, 286:130, 1142:400, 294:150}
-       #use_dict={7807:500, 3074:185, 972:350}
+
     else:
        explore_dict={1383:500, 580:200, 296:150, 180:100, 66:50, 165:100, 286:150, 1142:500, 294:150}
-       #explore_dict={7807:750, 3074:500, 972:500}
 
        use_dict={1383:400, 580:140, 296:130, 180:50, 66:16, 165:50, 286:130, 1142:400, 294:150}
-       #use_dict={7807:500, 3074:185, 972:350}
+
+    return explore_dict[dataset_length], use_dict[dataset_length], 10
+
+def getPCAsForHashVec(dataset_length):
+    explore_dict={1383:500, 580:200, 296:150, 180:100, 66:50, 165:100, 286:150, 1142:500, 294:150}
+    use_dict={1383:400, 580:140, 296:130, 180:50, 66:16, 165:50, 286:130, 1142:400, 294:150}
     return explore_dict[dataset_length], use_dict[dataset_length], 10
 
 def printPCAInsights(pcaParamObj, no_of_pca_comp_to_see, featureNamesParam):
@@ -108,4 +111,33 @@ def performPrediction(iterDumpDir, allFeatures, allLabels, featureNames, count_v
     '''
     for iterative runs of 10, deafult is 10, if you want to change then put the value after 10 as the last parameter
     '''
+    sklearn_models.performIterativeModeling(iterDumpDir, selected_features, allLabels, 10, 10)
+
+
+# for hash vectorizer 
+def performPredictionForHashVectorizer(iterDumpDir, allFeatures, allLabels, featureNames):
+    selected_features = None ## initialization
+    pca_comp, for_feature_selection, topComponentCount = getPCAsForHashVec(len(allFeatures))
+    pcaObj = decomposition.PCA(n_components=pca_comp)
+    pcaObj.fit(allFeatures)
+    # variance of features
+    variance_of_features = pcaObj.explained_variance_
+    # how much variance is explained each component
+    variance_ratio_of_features = pcaObj.explained_variance_ratio_
+    totalvarExplained = float(0)
+    for index_ in xrange(len(variance_ratio_of_features)):
+       var_exp_ = variance_ratio_of_features[index_]
+       totalvarExplained = totalvarExplained + var_exp_
+       print "Prin. comp#{}, ( indi) explained variance:{}, total explained variance:{}".format(index_+1, var_exp_, totalvarExplained)
+
+    no_features_to_use = for_feature_selection
+    print "Of all the features, we will use:", no_features_to_use
+    print "-"*50
+    pcaObj.n_components=no_features_to_use
+    selected_features = pcaObj.fit_transform(allFeatures)
+    print "Selected feature dataset size:", np.shape(selected_features)
+    print "-"*50
+    printPCAInsights(pcaObj, topComponentCount, featureNames)
+    print "-"*50
+
     sklearn_models.performIterativeModeling(iterDumpDir, selected_features, allLabels, 10, 10)
