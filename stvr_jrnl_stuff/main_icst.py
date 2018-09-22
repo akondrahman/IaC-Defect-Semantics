@@ -115,7 +115,6 @@ def executeTokenizationAndPred(iterDumpDir, tokenTuple, labels, reproc_dump_outp
   print "*"*50
   # Step-1: convert to array
   all_features = transformed_features.toarray()
-  print all_features   ### list of list: each entry is the tfidf
   print len(all_features)
   print '*'*50
   # Step-2:Sum up the counts of each vocabulary word
@@ -126,12 +125,7 @@ def executeTokenizationAndPred(iterDumpDir, tokenTuple, labels, reproc_dump_outp
   # df_ = utility.dumpTransformedTokenMatrixToCSV(transformed_features, feature_names, reproc_dump_output_file)
   # print df_.shape
   # print 'Dumping completed ...'
-  '''
-  for feature selection experience 
-  '''
-  all_features = xformForSelectiveFeature(all_features, sel_cnt)
-  print all_features
-  print '*'*50
+
   '''
   and then call prediction module
   '''
@@ -148,32 +142,32 @@ if __name__=='__main__':
     # theCompleteCategFile='/Users/akond/Documents/AkondOneDrive/OneDrive/IaC-Defect-Categ-Project/output/Cisco_Categ_For_DB.csv'
     # reproc_dump_output_file= '/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/reproc/TFIDF_CISCO.csv'
 
-    dataset_file="/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/dataset/MIRANTIS_FULL_DATASET.csv"
-    reproc_dump_output_file= '/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/reproc/TFIDF_MIR.dump'
-    theCompleteCategFile='/Users/akond/Documents/AkondOneDrive/OneDrive/IaC-Defect-Categ-Project/output/Mirantis_Categ_For_DB.csv'
-    reproc_dump_output_file= '/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/reproc/TFIDF_MIR.csv'
+    # dataset_file="/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/dataset/MIRANTIS_FULL_DATASET.csv"
+    # reproc_dump_output_file= '/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/reproc/TFIDF_MIR.dump'
+    # theCompleteCategFile='/Users/akond/Documents/AkondOneDrive/OneDrive/IaC-Defect-Categ-Project/output/Mirantis_Categ_For_DB.csv'
+    # reproc_dump_output_file= '/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/reproc/TFIDF_MIR.csv'
 
     # dataset_file="/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/dataset/SYNTHETIC_MOZ_FULL_DATASET.csv"
     # reproc_dump_output_file= '/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/reproc/TFIDF_MOZILLA.dump'
     # theCompleteCategFile='/Users/akond/Documents/AkondOneDrive/OneDrive/IaC-Defect-Categ-Project/output/Mozilla.Final.Categ.csv'
-    # reproc_dump_output_file= '/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/reproc/TFIDF_MOZILLA_AUG31.csv'
+    # reproc_dump_output_file= '/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/reproc/TFIDF_MOZILLA.csv'
 
     # dataset_file="/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/dataset/SYNTHETIC_OPENSTACK_FULL_DATASET.csv"
     # reproc_dump_output_file='/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/reproc/TFIDF_OPENSTACK.dump'
     # theCompleteCategFile='/Users/akond/Documents/AkondOneDrive/OneDrive/IaC-Defect-Categ-Project/output/Openstack.WithoutBadBoys.Final.Categ.csv'
     # reproc_dump_output_file='/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/reproc/TFIDF_OPENSTACK.csv'
 
-    # dataset_file="/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/dataset/SYNTHETIC_WIKI_FULL_DATASET.csv"
-    # theCompleteCategFile='/Users/akond/Documents/AkondOneDrive/OneDrive/IaC-Defect-Categ-Project/output/Wikimedia.Final.Categ.csv'
-    # reproc_dump_output_file='/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/reproc/TFIDF_WIKIMEDIA.dump'
-    # reproc_dump_output_file='/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/reproc/TFIDF_WIKIMEDIA.csv'
+    dataset_file="/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/dataset/SYNTHETIC_WIKI_FULL_DATASET.csv"
+    theCompleteCategFile='/Users/akond/Documents/AkondOneDrive/OneDrive/IaC-Defect-Categ-Project/output/Wikimedia.Final.Categ.csv'
+    reproc_dump_output_file='/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/reproc/TFIDF_WIKIMEDIA.dump'
+    reproc_dump_output_file='/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/reproc/TFIDF_WIKIMEDIA.csv'
 
     '''
     ICSE 19  TSE PUSH
     '''
     icst_flag = False   ### this means no commit level prediction
-    dataset_file  = "/Users/akond/Documents/AkondOneDrive/OneDrive/IaC-Tree/dataset/phase11-icse19-tse/PHASE11_MIR_FULL_DATASET.csv"
-    reproc_dump_output_file= '/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/reproc/TFIDF_MIR.csv'
+    # dataset_file  = "/Users/akond/Documents/AkondOneDrive/OneDrive/IaC-Tree/dataset/phase11-icse19-tse/PHASE11_MIR_FULL_DATASET.csv"
+    # reproc_dump_output_file= '/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/reproc/TFIDF_MIR.csv'
 
     # dataset_file  = "/Users/akond/Documents/AkondOneDrive/OneDrive/IaC-Tree/dataset/phase11-icse19-tse/PHASE11_MOZ_FULL_DATASET.csv"
     # reproc_dump_output_file= '/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/reproc/TFIDF_MOZILLA.csv'
@@ -210,12 +204,8 @@ if __name__=='__main__':
     prediction time!
     '''
     count_vec_flag=False # when set to False TF-IDF will occur
-    '''
-    for getting the top X features 
-    '''
-    selective_top_count = 500
 
-    executeTokenizationAndPred(dir2save, unfilteredTokens, defectLabels, reproc_dump_output_file, selective_top_count, count_vec_flag)
+    executeTokenizationAndPred(dir2save, unfilteredTokens, defectLabels, reproc_dump_output_file, count_vec_flag)
     print "The dataset was:", dataset_file
     print "-"*125
     print "Ended at", utility.giveTimeStamp()
