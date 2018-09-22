@@ -43,14 +43,8 @@ def evalClassifier(actualLabels, predictedLabels):
                                              next index after first  -> next lower index -> 1 -> 'high'
   '''
   target_labels =  ['N', 'Y']
-  '''
-    peeking into the labels of the dataset
-  '''
-  print classification_report(actualLabels, predictedLabels, target_names=target_labels)
-  print">"*25
-  '''
-  getting the confusion matrix
-  '''
+  class_report = classification_report(actualLabels, predictedLabels, target_names=target_labels)
+
   conf_matr_output = confusion_matrix(actualLabels, predictedLabels)
   # print "Confusion matrix start"
   # print conf_matr_output
@@ -73,45 +67,36 @@ def perform_cross_validation(classiferP, featuresP, labelsP, cross_vali_param, i
 def performCART(featureParam, labelParam, foldParam, infoP):
   theCARTModel = DecisionTreeClassifier()
   cart_area_under_roc = perform_cross_validation(theCARTModel, featureParam, labelParam, foldParam, infoP)
-  print "For {}, area under ROC is: {}".format(infoP, cart_area_under_roc[0])
   return cart_area_under_roc
 
 def performKNN(featureParam, labelParam, foldParam, infoP):
   theKNNModel = KNeighborsClassifier()
   knn_area_under_roc = perform_cross_validation(theKNNModel, featureParam, labelParam, foldParam, infoP)
-  print "For {}, area under ROC is: {}".format(infoP, knn_area_under_roc[0])
   return knn_area_under_roc
 
 
 def performRF(featureParam, labelParam, foldParam, infoP):
   theRndForestModel = RandomForestClassifier()
   rf_area_under_roc = perform_cross_validation(theRndForestModel, featureParam, labelParam, foldParam, infoP)
-  print "For {} area under ROC is: {}".format(infoP, rf_area_under_roc[0])
   return rf_area_under_roc
 
 def performSVC(featureParam, labelParam, foldParam, infoP):
   theSVMModel = svm.SVC(kernel='rbf').fit(featureParam, labelParam)
   svc_area_under_roc = perform_cross_validation(theSVMModel, featureParam, labelParam, foldParam, infoP)
-  print "For {} area under ROC is: {}".format(infoP, svc_area_under_roc[0])
   return svc_area_under_roc
 
 def performLogiReg(featureParam, labelParam, foldParam, infoP):
   theLogisticModel = LogisticRegression()
   theLogisticModel.fit(featureParam, labelParam)
   logireg_area_under_roc = perform_cross_validation(theLogisticModel, featureParam, labelParam, foldParam, infoP)
-  print "For {} area under ROC is: {}".format(infoP, logireg_area_under_roc[0])
   return logireg_area_under_roc
 
 def performNaiveBayes(featureParam, labelParam, foldParam, infoP):
   theNBModel = GaussianNB() ### DEFAULT
   # theNBModel = BernoulliNB() ### TUNED
-  '''
-  with optimized parameters
-  first is mozilla then wiki
-  '''
+
   theNBModel.fit(featureParam, labelParam)
   gnb_area_under_roc = perform_cross_validation(theNBModel, featureParam, labelParam, foldParam, infoP)
-  print "For {} area under ROC is: {}".format(infoP, gnb_area_under_roc[0])
   return gnb_area_under_roc
 
 

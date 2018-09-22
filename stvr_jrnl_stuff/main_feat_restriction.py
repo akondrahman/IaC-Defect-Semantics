@@ -87,15 +87,10 @@ if __name__=='__main__':
     print "-"*125
     dir2save='/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/output/'
 
-    # dataset_file="/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/dataset/CISCO_FULL_DATASET.csv"
-    # reproc_dump_output_file= '/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/reproc/TFIDF_CISCO.dump'
-    # theCompleteCategFile='/Users/akond/Documents/AkondOneDrive/OneDrive/IaC-Defect-Categ-Project/output/Cisco_Categ_For_DB.csv'
-    # reproc_dump_output_file= '/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/reproc/TFIDF_CISCO.csv'
-
-    dataset_file="/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/dataset/MIRANTIS_FULL_DATASET.csv"
-    reproc_dump_output_file= '/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/reproc/TFIDF_MIR.dump'
-    theCompleteCategFile='/Users/akond/Documents/AkondOneDrive/OneDrive/IaC-Defect-Categ-Project/output/Mirantis_Categ_For_DB.csv'
-    reproc_dump_output_file= '/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/reproc/TFIDF_MIR.csv'
+    # dataset_file="/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/dataset/MIRANTIS_FULL_DATASET.csv"
+    # reproc_dump_output_file= '/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/reproc/TFIDF_MIR.dump'
+    # theCompleteCategFile='/Users/akond/Documents/AkondOneDrive/OneDrive/IaC-Defect-Categ-Project/output/Mirantis_Categ_For_DB.csv'
+    # reproc_dump_output_file= '/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/reproc/TFIDF_MIR.csv'
 
     # dataset_file="/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/dataset/SYNTHETIC_MOZ_FULL_DATASET.csv"
     # reproc_dump_output_file= '/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/reproc/TFIDF_MOZILLA.dump'
@@ -110,19 +105,6 @@ if __name__=='__main__':
     # dataset_file="/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/dataset/SYNTHETIC_WIKI_FULL_DATASET.csv"
     # theCompleteCategFile='/Users/akond/Documents/AkondOneDrive/OneDrive/IaC-Defect-Categ-Project/output/Wikimedia.Final.Categ.csv'
     # reproc_dump_output_file='/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/reproc/TFIDF_WIKIMEDIA.dump'
-    # reproc_dump_output_file='/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/reproc/TFIDF_WIKIMEDIA.csv'
-
-
-    #dataset_file  = "/Users/akond/Documents/AkondOneDrive/OneDrive/IaC-Tree/dataset/phase11-icse19-tse/PHASE11_MIR_FULL_DATASET.csv"
-    #reproc_dump_output_file= '/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/reproc/TFIDF_MIR.csv'
-
-    # dataset_file  = "/Users/akond/Documents/AkondOneDrive/OneDrive/IaC-Tree/dataset/phase11-icse19-tse/PHASE11_MOZ_FULL_DATASET.csv"
-    # reproc_dump_output_file= '/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/reproc/TFIDF_MOZILLA.csv'
-
-    # dataset_file  = "/Users/akond/Documents/AkondOneDrive/OneDrive/IaC-Tree/dataset/phase11-icse19-tse/PHASE11_OST_FULL_DATASET.csv"
-    # reproc_dump_output_file='/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/reproc/TFIDF_OST_NB_DE.csv'
-
-    # dataset_file  = "/Users/akond/Documents/AkondOneDrive/OneDrive/IaC-Tree/dataset/phase11-icse19-tse/PHASE11_WIK_FULL_DATASET.csv"
     # reproc_dump_output_file='/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/reproc/TFIDF_WIKIMEDIA.csv'
 
     print "The dataset is:", dataset_file
@@ -144,7 +126,7 @@ if __name__=='__main__':
     '''
     prediction time!
     '''
-    count_vec_flag=False # when set to False TF-IDF will occur
+    count_vec_flag = False # when set to False TF-IDF will occur, True will make TF-IDF occur 
     '''
     for getting the top X features 
     '''

@@ -137,11 +137,6 @@ if __name__=='__main__':
     print "-"*125
     dir2save='/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/output/'
 
-    # dataset_file="/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/dataset/CISCO_FULL_DATASET.csv"
-    # reproc_dump_output_file= '/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/reproc/TFIDF_CISCO.dump'
-    # theCompleteCategFile='/Users/akond/Documents/AkondOneDrive/OneDrive/IaC-Defect-Categ-Project/output/Cisco_Categ_For_DB.csv'
-    # reproc_dump_output_file= '/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/reproc/TFIDF_CISCO.csv'
-
     # dataset_file="/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/dataset/MIRANTIS_FULL_DATASET.csv"
     # reproc_dump_output_file= '/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/reproc/TFIDF_MIR.dump'
     # theCompleteCategFile='/Users/akond/Documents/AkondOneDrive/OneDrive/IaC-Defect-Categ-Project/output/Mirantis_Categ_For_DB.csv'
@@ -157,44 +152,20 @@ if __name__=='__main__':
     # theCompleteCategFile='/Users/akond/Documents/AkondOneDrive/OneDrive/IaC-Defect-Categ-Project/output/Openstack.WithoutBadBoys.Final.Categ.csv'
     # reproc_dump_output_file='/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/reproc/TFIDF_OPENSTACK.csv'
 
-    dataset_file="/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/dataset/SYNTHETIC_WIKI_FULL_DATASET.csv"
-    theCompleteCategFile='/Users/akond/Documents/AkondOneDrive/OneDrive/IaC-Defect-Categ-Project/output/Wikimedia.Final.Categ.csv'
-    reproc_dump_output_file='/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/reproc/TFIDF_WIKIMEDIA.dump'
-    reproc_dump_output_file='/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/reproc/TFIDF_WIKIMEDIA.csv'
-
-    '''
-    ICSE 19  TSE PUSH
-    '''
-    icst_flag = False   ### this means no commit level prediction
-    # dataset_file  = "/Users/akond/Documents/AkondOneDrive/OneDrive/IaC-Tree/dataset/phase11-icse19-tse/PHASE11_MIR_FULL_DATASET.csv"
-    # reproc_dump_output_file= '/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/reproc/TFIDF_MIR.csv'
-
-    # dataset_file  = "/Users/akond/Documents/AkondOneDrive/OneDrive/IaC-Tree/dataset/phase11-icse19-tse/PHASE11_MOZ_FULL_DATASET.csv"
-    # reproc_dump_output_file= '/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/reproc/TFIDF_MOZILLA.csv'
-
-    # dataset_file  = "/Users/akond/Documents/AkondOneDrive/OneDrive/IaC-Tree/dataset/phase11-icse19-tse/PHASE11_OST_FULL_DATASET.csv"
-    # reproc_dump_output_file='/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/reproc/TFIDF_OST_NB_DE.csv'
-
-    # dataset_file  = "/Users/akond/Documents/AkondOneDrive/OneDrive/IaC-Tree/dataset/phase11-icse19-tse/PHASE11_WIK_FULL_DATASET.csv"
+    # dataset_file="/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/dataset/SYNTHETIC_WIKI_FULL_DATASET.csv"
+    # theCompleteCategFile='/Users/akond/Documents/AkondOneDrive/OneDrive/IaC-Defect-Categ-Project/output/Wikimedia.Final.Categ.csv'
+    # reproc_dump_output_file='/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/reproc/TFIDF_WIKIMEDIA.dump'
     # reproc_dump_output_file='/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/reproc/TFIDF_WIKIMEDIA.csv'
 
     print "The dataset is:", dataset_file
-    print "-"*125
+    print "-"*100
     #getICSTFilesForExa(dataset_file, 'user')  ###for example
-    '''
-    ICST STUFF
-    '''
-    if icst_flag:
-        ## commit level prediction : no longer needed
-        unfilteredTokensFromCommits, defectLabels = getCommitLevelTokensForTokenization(theCompleteCategFile, icst_flag)
-        data_dump = (unfilteredTokensFromCommits, defectLabels)
-        unfilteredTokens = unfilteredTokensFromCommits
-    else:
-        unfilteredTokensFromFile, defectLabels = getTokensForTokenization(dataset_file)
-        #print "tokens:{}, labels:{}".format(unfilteredTokensFromFile, defectLabels)
-        ### this is a list of strings ... each string si pre-processed , and correpsonds to all tokens of a file
-        data_dump = (unfilteredTokensFromFile, defectLabels)
-        unfilteredTokens = unfilteredTokensFromFile
+
+    unfilteredTokensFromFile, defectLabels = getTokensForTokenization(dataset_file)
+    #print "tokens:{}, labels:{}".format(unfilteredTokensFromFile, defectLabels)
+    ### this is a list of strings ... each string si pre-processed , and correpsonds to all tokens of a file
+    data_dump = (unfilteredTokensFromFile, defectLabels)
+    unfilteredTokens = unfilteredTokensFromFile
     '''
     dump corpus and defect labels as pickle
     '''
@@ -203,10 +174,10 @@ if __name__=='__main__':
     '''
     prediction time!
     '''
-    count_vec_flag=False # when set to False TF-IDF will occur
+    count_vec_flag = True # when set to False TF-IDF will occur
 
     executeTokenizationAndPred(dir2save, unfilteredTokens, defectLabels, reproc_dump_output_file, count_vec_flag)
     print "The dataset was:", dataset_file
-    print "-"*125
+    print "-"*100
     print "Ended at", utility.giveTimeStamp()
-    print "-"*125
+    print "-"*100
