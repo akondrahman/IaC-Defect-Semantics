@@ -115,7 +115,7 @@ def performPrediction(iterDumpDir, allFeatures, allLabels, featureNames, count_v
 
 
 # for hash vectorizer 
-def performPredictionForHashVectorizer(iterDumpDir, allFeatures, allLabels, featureNames):
+def performPredictionForHashVectorizer(iterDumpDir, allFeatures, allLabels):
     selected_features = None ## initialization
     pca_comp, for_feature_selection, topComponentCount = getPCAsForHashVec(len(allFeatures))
     pcaObj = decomposition.PCA(n_components=pca_comp)
@@ -136,8 +136,6 @@ def performPredictionForHashVectorizer(iterDumpDir, allFeatures, allLabels, feat
     pcaObj.n_components=no_features_to_use
     selected_features = pcaObj.fit_transform(allFeatures)
     print "Selected feature dataset size:", np.shape(selected_features)
-    print "-"*50
-    printPCAInsights(pcaObj, topComponentCount, featureNames)
     print "-"*50
 
     sklearn_models.performIterativeModeling(iterDumpDir, selected_features, allLabels, 10, 10)

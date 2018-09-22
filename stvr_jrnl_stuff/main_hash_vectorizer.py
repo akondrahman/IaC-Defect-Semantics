@@ -4,10 +4,8 @@ Sep 22 2018
 Hash vectorizer for STVR 
 '''
 
-#  vectorizer = HashingVectorizer(stop_words='english', alternate_sign=False, n_features=opts.n_features)
-
 import csv, utility, tokenization_preprocessor, numpy as np, tokenization_predictor
-from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
+from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer, HashingVectorizer
 import cPickle as pickle
 
 def getTokensForTokenization(datasetParam):
@@ -36,30 +34,18 @@ def getTokensForTokenization(datasetParam):
    return completeCorpus, completeLabels
 
 def executeTokenizationAndPred(iterDumpDir, tokenTuple, labels, reproc_dump_output_file ):
-  iac_tfidf_vectorizer  = TfidfVectorizer(min_df=1)
-  transformed_features   = iac_tfidf_vectorizer.fit_transform(tokenTuple)
-  feature_names = iac_tfidf_vectorizer.get_feature_names()
 
+  hash_vectorizer = HashingVectorizer()
+  transformed_features   = hash_vectorizer.fit_transform(tokenTuple) 
 
-  print "Total number of features used:", len(feature_names)
-  print "*"*50
-  # Step-1: convert to array
   all_features = transformed_features.toarray()
   print len(all_features)
   print '*'*50
-  # Step-2:Sum up the counts of each vocabulary word
-  dist = np.sum(all_features, axis=0)   #interesting but not used
-  '''
-  convert fitted matrix to pandas dataframe: not using CSV, dumping list of strings as pickle in line#80
-  '''
-  # df_ = utility.dumpTransformedTokenMatrixToCSV(transformed_features, feature_names, reproc_dump_output_file)
-  # print df_.shape
-  # print 'Dumping completed ...'
 
   '''
   and then call prediction module
   '''
-  tokenization_predictor.performPredictionForHashVectorizer(iterDumpDir, all_features, labels, feature_names)
+  tokenization_predictor.performPredictionForHashVectorizer(iterDumpDir, all_features, labels)
   print "="*100
 
 if __name__=='__main__':
