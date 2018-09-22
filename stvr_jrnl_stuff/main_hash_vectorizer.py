@@ -3,6 +3,7 @@ Akond Rahman
 Sep 22 2018 
 Hash vectorizer for STVR 
 '''
+# reff: https://datascience.stackexchange.com/questions/22250/what-is-the-difference-between-a-hashing-vectorizer-and-a-tfidf-vectorizer
 
 import csv, utility, tokenization_preprocessor, numpy as np, tokenization_predictor
 from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer, HashingVectorizer

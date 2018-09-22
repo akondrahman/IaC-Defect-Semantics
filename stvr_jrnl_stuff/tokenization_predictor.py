@@ -21,8 +21,9 @@ def getPCAsToExplore(dataset_length, count_vec_flag_param):
     return explore_dict[dataset_length], use_dict[dataset_length], 10
 
 def getPCAsForHashVec(dataset_length):
-    explore_dict={1383:500, 580:200, 296:150, 180:100, 66:50, 165:100, 286:150, 1142:500, 294:150}
-    use_dict={1383:400, 580:140, 296:130, 180:50, 66:16, 165:50, 286:130, 1142:400, 294:150}
+    explore_dict={1383:500, 580:200, 296:150, 180:125, 66:50, 165:100, 286:150, 1142:500, 294:150}
+    use_dict={1383:400, 580:140, 296:130, 180:125, 66:16, 165:50, 286:130, 1142:400, 294:150}
+    
     return explore_dict[dataset_length], use_dict[dataset_length], 10
 
 def printPCAInsights(pcaParamObj, no_of_pca_comp_to_see, featureNamesParam):
