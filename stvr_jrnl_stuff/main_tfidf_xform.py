@@ -7,7 +7,9 @@ TF IDF Transformizer for STVR
 
 import csv, utility, tokenization_preprocessor, numpy as np, tokenization_predictor
 from sklearn.feature_extraction.text import TfidfTransformer
+from sklearn.feature_extraction.text import HashingVectorizer
 import cPickle as pickle
+from sklearn.pipeline import make_pipeline
 
 def getTokensForTokenization(datasetParam):
    completeLabels    = []
@@ -33,8 +35,9 @@ def getTokensForTokenization(datasetParam):
    return completeCorpus, completeLabels
 
 def executeTokenizationAndPred(iterDumpDir, tokenTuple, labels, reproc_dump_output_file ):
-
-  tfidf_xformer= TfidfTransformer()
+  
+  hasher = HashingVectorizer()
+  tfidf_xformer = make_pipeline(hasher, TfidfTransformer())
   transformed_features   = tfidf_xformer.fit_transform(tokenTuple) 
 
   all_features = transformed_features.toarray()
@@ -47,15 +50,17 @@ def executeTokenizationAndPred(iterDumpDir, tokenTuple, labels, reproc_dump_outp
   tokenization_predictor.performPredictionForHashVectorizer(iterDumpDir, all_features, labels)
   print "="*100
 
+
+
 if __name__=='__main__':
     print "Started at", utility.giveTimeStamp()
     print "-"*125
     dir2save='/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/output/'
 
-    dataset_file="/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/dataset/MIRANTIS_FULL_DATASET.csv"
-    reproc_dump_output_file= '/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/reproc/TFIDF_MIR.dump'
-    theCompleteCategFile='/Users/akond/Documents/AkondOneDrive/OneDrive/IaC-Defect-Categ-Project/output/Mirantis_Categ_For_DB.csv'
-    reproc_dump_output_file= '/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/reproc/TFIDF_MIR.csv'
+    # dataset_file="/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/dataset/MIRANTIS_FULL_DATASET.csv"
+    # reproc_dump_output_file= '/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/reproc/TFIDF_MIR.dump'
+    # theCompleteCategFile='/Users/akond/Documents/AkondOneDrive/OneDrive/IaC-Defect-Categ-Project/output/Mirantis_Categ_For_DB.csv'
+    # reproc_dump_output_file= '/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/reproc/TFIDF_MIR.csv'
 
     # dataset_file="/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/dataset/SYNTHETIC_MOZ_FULL_DATASET.csv"
     # reproc_dump_output_file= '/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/reproc/TFIDF_MOZILLA.dump'
