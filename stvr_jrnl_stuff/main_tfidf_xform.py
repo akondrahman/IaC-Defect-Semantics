@@ -1,20 +1,18 @@
 '''
 Akond Rahman 
 Sep 22 2018 
-Hash vectorizer for STVR 
+TF IDF Transformizer for STVR 
 '''
-# reff: https://datascience.stackexchange.com/questions/22250/what-is-the-difference-between-a-hashing-vectorizer-and-a-tfidf-vectorizer
+# reff: http://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfTransformer.html
 
 import csv, utility, tokenization_preprocessor, numpy as np, tokenization_predictor
-from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer, HashingVectorizer
+from sklearn.feature_extraction.text import TfidfTransformer
 import cPickle as pickle
 
 def getTokensForTokenization(datasetParam):
    completeLabels    = []
    completeCorpus    = [] ## a list of lists with tokens from defected and non defected files
-   '''
-   token holders for manual/topic modeling
-   '''
+
    defective_tokens, non_defective_tokens = [], []
    with open(datasetParam, 'rU') as f:
      reader_ = csv.reader(f)
@@ -36,15 +34,15 @@ def getTokensForTokenization(datasetParam):
 
 def executeTokenizationAndPred(iterDumpDir, tokenTuple, labels, reproc_dump_output_file ):
 
-  hash_vectorizer = HashingVectorizer()
-  transformed_features   = hash_vectorizer.fit_transform(tokenTuple) 
+  tfidf_xformer= TfidfTransformer()
+  transformed_features   = tfidf_xformer.fit_transform(tokenTuple) 
 
   all_features = transformed_features.toarray()
   print len(all_features)
   print '*'*50
 
   '''
-  and then call prediction module
+  and then call prediction module using existing hash method 
   '''
   tokenization_predictor.performPredictionForHashVectorizer(iterDumpDir, all_features, labels)
   print "="*100
