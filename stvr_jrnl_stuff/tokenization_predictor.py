@@ -93,17 +93,17 @@ def performPrediction(iterDumpDir, allFeatures, allLabels, featureNames, count_v
     for index_ in xrange(len(variance_ratio_of_features)):
        var_exp_ = variance_ratio_of_features[index_]
        totalvarExplained = totalvarExplained + var_exp_
-       print "Prin. comp#{}, ( indi) explained variance:{}, total explained variance:{}".format(index_+1, var_exp_, totalvarExplained)
+       #print "Prin. comp#{}, ( indi) explained variance:{}, total explained variance:{}".format(index_+1, var_exp_, totalvarExplained)
 
     no_features_to_use = for_feature_selection
-    print "Of all the features, we will use:", no_features_to_use
-    print "-"*50
+    # print "Of all the features, we will use:", no_features_to_use
+    # print "-"*50
     pcaObj.n_components=no_features_to_use
     selected_features = pcaObj.fit_transform(allFeatures)
-    print "Selected feature dataset size:", np.shape(selected_features)
-    print "-"*50
-    printPCAInsights(pcaObj, topComponentCount, featureNames)
-    print "-"*50
+    # print "Selected feature dataset size:", np.shape(selected_features)
+    # print "-"*50
+    # printPCAInsights(pcaObj, topComponentCount, featureNames)
+    # print "-"*50
     '''
     lets start prediction , now that we have feature selection otu of the way
     for single iteration
@@ -112,7 +112,11 @@ def performPrediction(iterDumpDir, allFeatures, allLabels, featureNames, count_v
     '''
     for iterative runs of 10, deafult is 10, if you want to change then put the value after 10 as the last parameter
     '''
-    sklearn_models.performIterativeModeling(iterDumpDir, selected_features, allLabels, 10, 10)
+    dt_res, knn_res, rf_res, sv_res, lr_res, nb_res =  sklearn_models.performIterativeModeling(iterDumpDir, selected_features, allLabels, 10, 10)
+    # each variable is a tuple of 6 lists , list#1,2,3,4,5,6 is respectively for AUC, PRE, REC, F1, ACC, GMEAN, each list has the result of 10 x 10 cv
+    the_tup = (dt_res, knn_res, rf_res, sv_res, lr_res, nb_res) 
+    return the_tup
+
 
 
 # for hash vectorizer 

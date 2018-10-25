@@ -1,11 +1,12 @@
 '''
 Akond Rahman
-Feb 28, 2017
-bag of words technique
+Oct 18 2018 
+STVR Journal Work 
 '''
 import csv, utility, tokenization_preprocessor, numpy as np, tokenization_predictor
 from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
 import cPickle as pickle
+import os 
 
 def getTokensForTokenization(datasetParam):
    completeLabels    = []
@@ -42,6 +43,7 @@ def xformForSelectiveFeature(feat_list, sel_feat_count):
       if len(ls_) > end_ptr:
          tmp_lis = ls_[0: end_ptr]
          out_lis.append(tmp_lis)
+
     return out_lis
 
 def executeTokenizationAndPred(iterDumpDir, tokenTuple, labels, reproc_dump_output_file, sel_cnt, count_vec_flag_param=True):
@@ -55,7 +57,7 @@ def executeTokenizationAndPred(iterDumpDir, tokenTuple, labels, reproc_dump_outp
       feature_names = iac_tfidf_vectorizer.get_feature_names()
 
 
-  print "Total number of features used:", len(feature_names)
+  print "Total number of features in the dataset:", len(feature_names)
   print "*"*50
   # Step-1: convert to array
   all_features = transformed_features.toarray()
@@ -79,18 +81,38 @@ def executeTokenizationAndPred(iterDumpDir, tokenTuple, labels, reproc_dump_outp
   '''
   and then call prediction module
   '''
-  tokenization_predictor.performPrediction(iterDumpDir, all_features, labels, feature_names, count_vec_flag_param)
+  all_learner_res = tokenization_predictor.performPrediction(iterDumpDir, all_features, labels, feature_names, count_vec_flag_param)
   print "="*100
+  return all_learner_res
+
+def dumpContentIntoFile(strP, fileP):
+  fileToWrite = open( fileP, 'w')
+  fileToWrite.write(strP )
+  fileToWrite.close()
+  return str(os.stat(fileP).st_size)
+
+def printResult(learner_res, top_cnt, learner_name):
+    str2ret = ''
+    perf_ = {0:'AUC', 1:'PRE', 2:'REC', 3:'F-1', 4:'ACC',  5:'GMN'}
+    for ind_ in xrange(len(learner_res)):
+        perf_list = learner_res[ind_]
+        print '*'*25
+        print learner_name
+        print 'PERFORMANCE MEASURE:{}, MEDIAN VALUES:{}'.format(perf_[ind_], np.median(perf_list))
+        print '*'*25
+        str2ret = str2ret + str(top_cnt) + ',' + learner_name + ',' + perf_[ind_] + ',' + str(np.median(perf_list)) + '\n'
+    return str2ret
+    
 
 if __name__=='__main__':
     print "Started at", utility.giveTimeStamp()
     print "-"*125
     dir2save='/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/output/'
 
-    # dataset_file="/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/dataset/MIRANTIS_FULL_DATASET.csv"
-    # reproc_dump_output_file= '/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/reproc/TFIDF_MIR.dump'
-    # theCompleteCategFile='/Users/akond/Documents/AkondOneDrive/OneDrive/IaC-Defect-Categ-Project/output/Mirantis_Categ_For_DB.csv'
-    # reproc_dump_output_file= '/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/reproc/TFIDF_MIR.csv'
+    dataset_file="/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/dataset/MIRANTIS_FULL_DATASET.csv"
+    reproc_dump_output_file= '/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/reproc/TFIDF_MIR.dump'
+    theCompleteCategFile='/Users/akond/Documents/AkondOneDrive/OneDrive/IaC-Defect-Categ-Project/output/Mirantis_Categ_For_DB.csv'
+    reproc_dump_output_file= '/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/reproc/TFIDF_MIR.csv'
 
     # dataset_file="/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/dataset/SYNTHETIC_MOZ_FULL_DATASET.csv"
     # reproc_dump_output_file= '/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/reproc/TFIDF_MOZILLA.dump'
@@ -130,10 +152,25 @@ if __name__=='__main__':
     '''
     for getting the top X features 
     '''
-    selective_top_count = 500
-
-    executeTokenizationAndPred(dir2save, unfilteredTokens, defectLabels, reproc_dump_output_file, selective_top_count, count_vec_flag)
+    full_str = ''
+    # selective_top_count = 500
+    selective_top_count_list = [100, 250, 500, 750, 1000, 1250, 1500] 
+    for selective_top_count in selective_top_count_list:
+        all_learner_res = executeTokenizationAndPred(dir2save, unfilteredTokens, defectLabels, reproc_dump_output_file, selective_top_count, count_vec_flag)
+        dt_res, knn_res, rf_res, sv_res, lr_res, nb_res = all_learner_res
+        print '='*75 
+        print 'Number of features selcted:', selective_top_count
+        cart_res_str = printResult(dt_res,  selective_top_count, 'CART')
+        knn_res_str_ = printResult(knn_res, selective_top_count, 'KNN')
+        lr_res_str_  = printResult(lr_res,  selective_top_count, 'LR')
+        nb_res_str_  = printResult(nb_res,  selective_top_count, 'NB')
+        rf_res_str_  = printResult(rf_res,  selective_top_count, 'RF')
+        svm_res_str  = printResult(sv_res,  selective_top_count, 'SVM')
+        print '='*75
+        full_str = full_str + cart_res_str + knn_res_str_ + lr_res_str_ + nb_res_str_ + rf_res_str_ + svm_res_str
+    
     print "The dataset was:", dataset_file
     print "-"*100
+    dumpContentIntoFile(full_str, dir2save + 'FINAL_FEAT_RESTRICTION.csv')
     print "Ended at", utility.giveTimeStamp()
     print "-"*100

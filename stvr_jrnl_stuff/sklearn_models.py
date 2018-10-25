@@ -216,174 +216,175 @@ def performIterativeModeling(iterDumpDir, featureParam, labelParam, foldParam, i
     nb_area_roc, nb_preci_, nb_recall, f1_nb, acc_nb, nb_gm = 0, 0, 0, 0, 0, 0
 
 
-  print "-"*50
-  print "Summary: AUC, for:{}, mean:{}, median:{}, max:{}, min:{}".format("CART", np.mean(holder_cart),
-                                                                          np.median(holder_cart), max(holder_cart),
-                                                                          min(holder_cart))
-  print "*"*25
-  print "Summary: Precision, for:{}, mean:{}, median:{}, max:{}, min:{}".format("CART", np.mean(cart_prec_holder),
-                                                                          np.median(cart_prec_holder), max(cart_prec_holder),
-                                                                          min(cart_prec_holder))
-  print "*"*25
-  print "Summary: Recall, for:{}, mean:{}, median:{}, max:{}, min:{}".format("CART", np.mean(cart_recall_holder),
-                                                                          np.median(cart_recall_holder), max(cart_recall_holder),
-                                                                          min(cart_recall_holder))
-  print "*"*25
-  print "Summary: F1, for:{}, mean:{}, median:{}, max:{}, min:{}".format("CART", np.mean(f1_holder_cart),
-                                                                            np.median(f1_holder_cart), max(f1_holder_cart),
-                                                                            min(f1_holder_cart))
-  print "*"*25
-  print "Summary: Accuracy, for:{}, mean:{}, median:{}, max:{}, min:{}".format("CART", np.mean(acc_holder_cart),
-                                                                            np.median(acc_holder_cart), max(acc_holder_cart),
-                                                                            min(acc_holder_cart))
-  print "*"*25
-  print "Summary: G-Mean, for:{}, mean:{}, median:{}, max:{}, min:{}".format("CART", np.mean(gmean_holder_cart),
-                                                                            np.median(gmean_holder_cart), max(gmean_holder_cart),
-                                                                            min(gmean_holder_cart))
-  print "*"*25
+  # print "-"*50
+  # print "Summary: AUC, for:{}, mean:{}, median:{}, max:{}, min:{}".format("CART", np.mean(holder_cart),
+  #                                                                         np.median(holder_cart), max(holder_cart),
+  #                                                                         min(holder_cart))
+  # print "*"*25
+  # print "Summary: Precision, for:{}, mean:{}, median:{}, max:{}, min:{}".format("CART", np.mean(cart_prec_holder),
+  #                                                                         np.median(cart_prec_holder), max(cart_prec_holder),
+  #                                                                         min(cart_prec_holder))
+  # print "*"*25
+  # print "Summary: Recall, for:{}, mean:{}, median:{}, max:{}, min:{}".format("CART", np.mean(cart_recall_holder),
+  #                                                                         np.median(cart_recall_holder), max(cart_recall_holder),
+  #                                                                         min(cart_recall_holder))
+  # print "*"*25
+  # print "Summary: F1, for:{}, mean:{}, median:{}, max:{}, min:{}".format("CART", np.mean(f1_holder_cart),
+  #                                                                           np.median(f1_holder_cart), max(f1_holder_cart),
+  #                                                                           min(f1_holder_cart))
+  # print "*"*25
+  # print "Summary: Accuracy, for:{}, mean:{}, median:{}, max:{}, min:{}".format("CART", np.mean(acc_holder_cart),
+  #                                                                           np.median(acc_holder_cart), max(acc_holder_cart),
+  #                                                                           min(acc_holder_cart))
+  # print "*"*25
+  # print "Summary: G-Mean, for:{}, mean:{}, median:{}, max:{}, min:{}".format("CART", np.mean(gmean_holder_cart),
+  #                                                                           np.median(gmean_holder_cart), max(gmean_holder_cart),
+  #                                                                           min(gmean_holder_cart))
+  # print "*"*25
   cart_all_pred_perf_values = (holder_cart, cart_prec_holder, cart_recall_holder, f1_holder_cart, acc_holder_cart, gmean_holder_cart)
-  dumpPredPerfValuesToFile(iterationP, cart_all_pred_perf_values, iterDumpDir+'PRED_PERF_CART.csv')
-  print "-"*50
+  # dumpPredPerfValuesToFile(iterationP, cart_all_pred_perf_values, iterDumpDir+'PRED_PERF_CART.csv')
+  # print "-"*50
 
 
-  print "Summary: AUC, for:{}, mean:{}, median:{}, max:{}, min:{}".format("KNN", np.mean(holder_knn),
-                                                                          np.median(holder_knn), max(holder_knn),
-                                                                          min(holder_knn))
-  print "*"*25
-  print "Summary: Precision, for:{}, mean:{}, median:{}, max:{}, min:{}".format("KNN", np.mean(knn_prec_holder),
-                                                                          np.median(knn_prec_holder), max(knn_prec_holder),
-                                                                          min(knn_prec_holder))
-  print "*"*25
-  print "Summary: Recall, for:{}, mean:{}, median:{}, max:{}, min:{}".format("KNN", np.mean(knn_recall_holder),
-                                                                          np.median(knn_recall_holder), max(knn_recall_holder),
-                                                                          min(knn_recall_holder))
-  print "*"*25
-  print "Summary: F1, for:{}, mean:{}, median:{}, max:{}, min:{}".format("KNN", np.mean(f1_holder_knn),
-                                                                            np.median(f1_holder_knn), max(f1_holder_knn),
-                                                                            min(f1_holder_knn))
-  print "*"*25
-  print "Summary: Accuracy, for:{}, mean:{}, median:{}, max:{}, min:{}".format("KNN", np.mean(acc_holder_knn),
-                                                                            np.median(acc_holder_knn), max(acc_holder_knn),
-                                                                            min(acc_holder_knn))
-  print "*"*25
-  print "Summary: G-Mean, for:{}, mean:{}, median:{}, max:{}, min:{}".format("KNN", np.mean(gmean_holder_knn),
-                                                                            np.median(gmean_holder_knn), max(gmean_holder_knn),
-                                                                            min(gmean_holder_knn))
-  print "*"*25  
+  # print "Summary: AUC, for:{}, mean:{}, median:{}, max:{}, min:{}".format("KNN", np.mean(holder_knn),
+  #                                                                         np.median(holder_knn), max(holder_knn),
+  #                                                                         min(holder_knn))
+  # print "*"*25
+  # print "Summary: Precision, for:{}, mean:{}, median:{}, max:{}, min:{}".format("KNN", np.mean(knn_prec_holder),
+  #                                                                         np.median(knn_prec_holder), max(knn_prec_holder),
+  #                                                                         min(knn_prec_holder))
+  # print "*"*25
+  # print "Summary: Recall, for:{}, mean:{}, median:{}, max:{}, min:{}".format("KNN", np.mean(knn_recall_holder),
+  #                                                                         np.median(knn_recall_holder), max(knn_recall_holder),
+  #                                                                         min(knn_recall_holder))
+  # print "*"*25
+  # print "Summary: F1, for:{}, mean:{}, median:{}, max:{}, min:{}".format("KNN", np.mean(f1_holder_knn),
+  #                                                                           np.median(f1_holder_knn), max(f1_holder_knn),
+  #                                                                           min(f1_holder_knn))
+  # print "*"*25
+  # print "Summary: Accuracy, for:{}, mean:{}, median:{}, max:{}, min:{}".format("KNN", np.mean(acc_holder_knn),
+  #                                                                           np.median(acc_holder_knn), max(acc_holder_knn),
+  #                                                                           min(acc_holder_knn))
+  # print "*"*25
+  # print "Summary: G-Mean, for:{}, mean:{}, median:{}, max:{}, min:{}".format("KNN", np.mean(gmean_holder_knn),
+  #                                                                           np.median(gmean_holder_knn), max(gmean_holder_knn),
+  #                                                                           min(gmean_holder_knn))
+  # print "*"*25  
   knn_all_pred_perf_values = (holder_knn, knn_prec_holder, knn_recall_holder, f1_holder_knn, acc_holder_knn, gmean_holder_knn)
-  dumpPredPerfValuesToFile(iterationP, knn_all_pred_perf_values, iterDumpDir+'PRED_PERF_KNN.csv')
-  print "-"*50
+  # dumpPredPerfValuesToFile(iterationP, knn_all_pred_perf_values, iterDumpDir+'PRED_PERF_KNN.csv')
+  # print "-"*50
 
 
-  print "Summary: AUC, for:{}, mean:{}, median:{}, max:{}, min:{}".format("Rand. Forest", np.mean(holder_rf),
-                                                                          np.median(holder_rf), max(holder_rf),
-                                                                          min(holder_rf))
-  print "*"*25
-  print "Summary: Precision, for:{}, mean:{}, median:{}, max:{}, min:{}".format("Rand. Forest", np.mean(rf_prec_holder),
-                                                                          np.median(rf_prec_holder), max(rf_prec_holder),
-                                                                          min(rf_prec_holder))
-  print "*"*25
-  print "Summary: Recall, for:{}, mean:{}, median:{}, max:{}, min:{}".format("Rand. Forest", np.mean(rf_recall_holder),
-                                                                          np.median(rf_recall_holder), max(rf_recall_holder),
-                                                                          min(rf_recall_holder))
-  print "*"*25
-  print "Summary: F1, for:{}, mean:{}, median:{}, max:{}, min:{}".format("Rand. Forest", np.mean(f1_holder_rf),
-                                                                            np.median(f1_holder_rf), max(f1_holder_rf),
-                                                                            min(f1_holder_rf))
-  print "*"*25
-  print "Summary: Accuracy, for:{}, mean:{}, median:{}, max:{}, min:{}".format("Rand. Forest", np.mean(acc_holder_rf),
-                                                                            np.median(acc_holder_rf), max(acc_holder_rf),
-                                                                            min(acc_holder_rf))
-  print "*"*25
-  print "Summary: G-Mean, for:{}, mean:{}, median:{}, max:{}, min:{}".format("Rand. Forest", np.mean(gmean_holder_rf),
-                                                                            np.median(gmean_holder_rf), max(gmean_holder_rf),
-                                                                            min(gmean_holder_rf))
-  print "*"*25  
+  # print "Summary: AUC, for:{}, mean:{}, median:{}, max:{}, min:{}".format("Rand. Forest", np.mean(holder_rf),
+  #                                                                         np.median(holder_rf), max(holder_rf),
+  #                                                                         min(holder_rf))
+  # print "*"*25
+  # print "Summary: Precision, for:{}, mean:{}, median:{}, max:{}, min:{}".format("Rand. Forest", np.mean(rf_prec_holder),
+  #                                                                         np.median(rf_prec_holder), max(rf_prec_holder),
+  #                                                                         min(rf_prec_holder))
+  # print "*"*25
+  # print "Summary: Recall, for:{}, mean:{}, median:{}, max:{}, min:{}".format("Rand. Forest", np.mean(rf_recall_holder),
+  #                                                                         np.median(rf_recall_holder), max(rf_recall_holder),
+  #                                                                         min(rf_recall_holder))
+  # print "*"*25
+  # print "Summary: F1, for:{}, mean:{}, median:{}, max:{}, min:{}".format("Rand. Forest", np.mean(f1_holder_rf),
+  #                                                                           np.median(f1_holder_rf), max(f1_holder_rf),
+  #                                                                           min(f1_holder_rf))
+  # print "*"*25
+  # print "Summary: Accuracy, for:{}, mean:{}, median:{}, max:{}, min:{}".format("Rand. Forest", np.mean(acc_holder_rf),
+  #                                                                           np.median(acc_holder_rf), max(acc_holder_rf),
+  #                                                                           min(acc_holder_rf))
+  # print "*"*25
+  # print "Summary: G-Mean, for:{}, mean:{}, median:{}, max:{}, min:{}".format("Rand. Forest", np.mean(gmean_holder_rf),
+  #                                                                           np.median(gmean_holder_rf), max(gmean_holder_rf),
+  #                                                                           min(gmean_holder_rf))
+  # print "*"*25  
   rf_all_pred_perf_values = (holder_rf, rf_prec_holder, rf_recall_holder, f1_holder_rf, acc_holder_rf, gmean_holder_rf)
-  dumpPredPerfValuesToFile(iterationP, rf_all_pred_perf_values, iterDumpDir+'PRED_PERF_RF.csv')
-  print "-"*50
+  # dumpPredPerfValuesToFile(iterationP, rf_all_pred_perf_values, iterDumpDir+'PRED_PERF_RF.csv')
+  # print "-"*50
 
-  print "Summary: AUC, for:{}, mean:{}, median:{}, max:{}, min:{}".format("S. Vec. Class.", np.mean(holder_svc),
-                                                                          np.median(holder_svc), max(holder_svc),
-                                                                          min(holder_svc))
-  print "*"*25
-  print "Summary: Precision, for:{}, mean:{}, median:{}, max:{}, min:{}".format("S. Vec. Class.", np.mean(svc_prec_holder),
-                                                                            np.median(svc_prec_holder), max(svc_prec_holder),
-                                                                            min(svc_prec_holder))
-  print "*"*25
-  print "Summary: Recall, for:{}, mean:{}, median:{}, max:{}, min:{}".format("S. Vec. Class.", np.mean(svc_recall_holder),
-                                                                            np.median(svc_recall_holder), max(svc_recall_holder),
-                                                                            min(svc_recall_holder))
-  print "*"*25
-  print "Summary: F1, for:{}, mean:{}, median:{}, max:{}, min:{}".format("S. Vec. Class.", np.mean(f1_holder_svc),
-                                                                            np.median(f1_holder_svc), max(f1_holder_svc),
-                                                                            min(f1_holder_svc))
-  print "*"*25
-  print "Summary: Accuracy, for:{}, mean:{}, median:{}, max:{}, min:{}".format("S. Vec. Class.", np.mean(acc_holder_svc),
-                                                                            np.median(acc_holder_svc), max(acc_holder_svc),
-                                                                            min(acc_holder_svc))
-  print "*"*25
-  print "Summary: G-Mean, for:{}, mean:{}, median:{}, max:{}, min:{}".format("S. Vec. Class.", np.mean(gmean_holder_svc),
-                                                                            np.median(gmean_holder_svc), max(gmean_holder_svc),
-                                                                            min(gmean_holder_svc))
-  print "*"*25  
+  # print "Summary: AUC, for:{}, mean:{}, median:{}, max:{}, min:{}".format("S. Vec. Class.", np.mean(holder_svc),
+  #                                                                         np.median(holder_svc), max(holder_svc),
+  #                                                                         min(holder_svc))
+  # print "*"*25
+  # print "Summary: Precision, for:{}, mean:{}, median:{}, max:{}, min:{}".format("S. Vec. Class.", np.mean(svc_prec_holder),
+  #                                                                           np.median(svc_prec_holder), max(svc_prec_holder),
+  #                                                                           min(svc_prec_holder))
+  # print "*"*25
+  # print "Summary: Recall, for:{}, mean:{}, median:{}, max:{}, min:{}".format("S. Vec. Class.", np.mean(svc_recall_holder),
+  #                                                                           np.median(svc_recall_holder), max(svc_recall_holder),
+  #                                                                           min(svc_recall_holder))
+  # print "*"*25
+  # print "Summary: F1, for:{}, mean:{}, median:{}, max:{}, min:{}".format("S. Vec. Class.", np.mean(f1_holder_svc),
+  #                                                                           np.median(f1_holder_svc), max(f1_holder_svc),
+  #                                                                           min(f1_holder_svc))
+  # print "*"*25
+  # print "Summary: Accuracy, for:{}, mean:{}, median:{}, max:{}, min:{}".format("S. Vec. Class.", np.mean(acc_holder_svc),
+  #                                                                           np.median(acc_holder_svc), max(acc_holder_svc),
+  #                                                                           min(acc_holder_svc))
+  # print "*"*25
+  # print "Summary: G-Mean, for:{}, mean:{}, median:{}, max:{}, min:{}".format("S. Vec. Class.", np.mean(gmean_holder_svc),
+  #                                                                           np.median(gmean_holder_svc), max(gmean_holder_svc),
+  #                                                                           min(gmean_holder_svc))
+  # print "*"*25  
   svc_all_pred_perf_values = (holder_svc, svc_prec_holder, svc_recall_holder, f1_holder_svc, acc_holder_svc, gmean_holder_svc)
-  dumpPredPerfValuesToFile(iterationP, svc_all_pred_perf_values, iterDumpDir+'PRED_PERF_SVC.csv')
-  print "-"*50
+  # dumpPredPerfValuesToFile(iterationP, svc_all_pred_perf_values, iterDumpDir+'PRED_PERF_SVC.csv')
+  # print "-"*50
 
-  print "Summary: AUC, for:{}, mean:{}, median:{}, max:{}, min:{}".format("Logi. Regression", np.mean(holder_logi),
-                                                                          np.median(holder_logi), max(holder_logi),
-                                                                          min(holder_logi))
-  print "*"*25
-  print "Summary: Precision, for:{}, mean:{}, median:{}, max:{}, min:{}".format("Logi. Regression", np.mean(logi_prec_holder),
-                                                                            np.median(logi_prec_holder), max(logi_prec_holder),
-                                                                            min(logi_prec_holder))
-  print "*"*25
-  print "Summary: Recall, for:{}, mean:{}, median:{}, max:{}, min:{}".format("Logi. Regression", np.mean(logi_recall_holder),
-                                                                            np.median(logi_recall_holder), max(logi_recall_holder),
-                                                                            min(logi_recall_holder))
-  print "*"*25
-  print "Summary: F1, for:{}, mean:{}, median:{}, max:{}, min:{}".format("Logi. Regression", np.mean(f1_holder_lr),
-                                                                            np.median(f1_holder_lr), max(f1_holder_lr),
-                                                                            min(f1_holder_lr))
-  print "*"*25
-  print "Summary: Accuracy, for:{}, mean:{}, median:{}, max:{}, min:{}".format("Logi. Regression", np.mean(acc_holder_lr),
-                                                                            np.median(acc_holder_lr), max(acc_holder_lr),
-                                                                            min(acc_holder_lr))
-  print "*"*25
-  print "Summary: G-Mean, for:{}, mean:{}, median:{}, max:{}, min:{}".format("S. Vec. Class.", np.mean(gmean_holder_lr),
-                                                                            np.median(gmean_holder_lr), max(gmean_holder_lr),
-                                                                            min(gmean_holder_lr))
-  print "*"*25  
+  # print "Summary: AUC, for:{}, mean:{}, median:{}, max:{}, min:{}".format("Logi. Regression", np.mean(holder_logi),
+  #                                                                         np.median(holder_logi), max(holder_logi),
+  #                                                                         min(holder_logi))
+  # print "*"*25
+  # print "Summary: Precision, for:{}, mean:{}, median:{}, max:{}, min:{}".format("Logi. Regression", np.mean(logi_prec_holder),
+  #                                                                           np.median(logi_prec_holder), max(logi_prec_holder),
+  #                                                                           min(logi_prec_holder))
+  # print "*"*25
+  # print "Summary: Recall, for:{}, mean:{}, median:{}, max:{}, min:{}".format("Logi. Regression", np.mean(logi_recall_holder),
+  #                                                                           np.median(logi_recall_holder), max(logi_recall_holder),
+  #                                                                           min(logi_recall_holder))
+  # print "*"*25
+  # print "Summary: F1, for:{}, mean:{}, median:{}, max:{}, min:{}".format("Logi. Regression", np.mean(f1_holder_lr),
+  #                                                                           np.median(f1_holder_lr), max(f1_holder_lr),
+  #                                                                           min(f1_holder_lr))
+  # print "*"*25
+  # print "Summary: Accuracy, for:{}, mean:{}, median:{}, max:{}, min:{}".format("Logi. Regression", np.mean(acc_holder_lr),
+  #                                                                           np.median(acc_holder_lr), max(acc_holder_lr),
+  #                                                                           min(acc_holder_lr))
+  # print "*"*25
+  # print "Summary: G-Mean, for:{}, mean:{}, median:{}, max:{}, min:{}".format("S. Vec. Class.", np.mean(gmean_holder_lr),
+  #                                                                           np.median(gmean_holder_lr), max(gmean_holder_lr),
+  #                                                                           min(gmean_holder_lr))
+  # print "*"*25  
   logireg_all_pred_perf_values = (holder_logi, logi_prec_holder, logi_recall_holder, f1_holder_lr, acc_holder_lr, gmean_holder_lr)
-  dumpPredPerfValuesToFile(iterationP, logireg_all_pred_perf_values, iterDumpDir+'PRED_PERF_LOGIREG.csv')
-  print "-"*50
+  # dumpPredPerfValuesToFile(iterationP, logireg_all_pred_perf_values, iterDumpDir+'PRED_PERF_LOGIREG.csv')
+  # print "-"*50
 
 
-  print "Summary: AUC, for:{}, mean:{}, median:{}, max:{}, min:{}".format("Naive Bayes", np.mean(holder_nb),
-                                                                          np.median(holder_nb), max(holder_nb),
-                                                                          min(holder_nb))
-  print "*"*25
-  print "Summary: Precision, for:{}, mean:{}, median:{}, max:{}, min:{}".format("Naive Bayes", np.mean(nb_prec_holder),
-                                                                            np.median(nb_prec_holder), max(nb_prec_holder),
-                                                                            min(nb_prec_holder))
-  print "*"*25
-  print "Summary: Recall, for:{}, mean:{}, median:{}, max:{}, min:{}".format("Naive Bayes", np.mean(nb_recall_holder),
-                                                                            np.median(nb_recall_holder), max(nb_recall_holder),
-                                                                            min(nb_recall_holder))
-  print "*"*25
-  print "Summary: F1, for:{}, mean:{}, median:{}, max:{}, min:{}".format("Naive Bayes", np.mean(f1_holder_nb),
-                                                                            np.median(f1_holder_nb), max(f1_holder_nb),
-                                                                            min(f1_holder_nb))
-  print "*"*25
-  print "Summary: Accuracy, for:{}, mean:{}, median:{}, max:{}, min:{}".format("Naive Bayes", np.mean(acc_holder_nb),
-                                                                            np.median(acc_holder_nb), max(acc_holder_nb),
-                                                                            min(acc_holder_nb))
-  print "*"*25
-  print "Summary: G-Mean, for:{}, mean:{}, median:{}, max:{}, min:{}".format("Naive Bayes", np.mean(gmean_holder_nb),
-                                                                            np.median(gmean_holder_nb), max(gmean_holder_nb),
-                                                                            min(gmean_holder_nb))
-  print "*"*25  
+  # print "Summary: AUC, for:{}, mean:{}, median:{}, max:{}, min:{}".format("Naive Bayes", np.mean(holder_nb),
+  #                                                                         np.median(holder_nb), max(holder_nb),
+  #                                                                         min(holder_nb))
+  # print "*"*25
+  # print "Summary: Precision, for:{}, mean:{}, median:{}, max:{}, min:{}".format("Naive Bayes", np.mean(nb_prec_holder),
+  #                                                                           np.median(nb_prec_holder), max(nb_prec_holder),
+  #                                                                           min(nb_prec_holder))
+  # print "*"*25
+  # print "Summary: Recall, for:{}, mean:{}, median:{}, max:{}, min:{}".format("Naive Bayes", np.mean(nb_recall_holder),
+  #                                                                           np.median(nb_recall_holder), max(nb_recall_holder),
+  #                                                                           min(nb_recall_holder))
+  # print "*"*25
+  # print "Summary: F1, for:{}, mean:{}, median:{}, max:{}, min:{}".format("Naive Bayes", np.mean(f1_holder_nb),
+  #                                                                           np.median(f1_holder_nb), max(f1_holder_nb),
+  #                                                                           min(f1_holder_nb))
+  # print "*"*25
+  # print "Summary: Accuracy, for:{}, mean:{}, median:{}, max:{}, min:{}".format("Naive Bayes", np.mean(acc_holder_nb),
+  #                                                                           np.median(acc_holder_nb), max(acc_holder_nb),
+  #                                                                           min(acc_holder_nb))
+  # print "*"*25
+  # print "Summary: G-Mean, for:{}, mean:{}, median:{}, max:{}, min:{}".format("Naive Bayes", np.mean(gmean_holder_nb),
+  #                                                                           np.median(gmean_holder_nb), max(gmean_holder_nb),
+  #                                                                           min(gmean_holder_nb))
+  # print "*"*25  
   nb_all_pred_perf_values = (holder_nb, nb_prec_holder, nb_recall_holder, f1_holder_nb, acc_holder_nb, gmean_holder_nb)
-  dumpPredPerfValuesToFile(iterationP, nb_all_pred_perf_values, iterDumpDir+'PRED_PERF_NB.csv')
-  print "-"*50
+  # dumpPredPerfValuesToFile(iterationP, nb_all_pred_perf_values, iterDumpDir+'PRED_PERF_NB.csv')
+  # print "-"*50
+  return cart_all_pred_perf_values, knn_all_pred_perf_values, rf_all_pred_perf_values, svc_all_pred_perf_values, logireg_all_pred_perf_values, nb_all_pred_perf_values
