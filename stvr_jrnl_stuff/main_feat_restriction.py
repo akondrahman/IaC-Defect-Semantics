@@ -93,7 +93,7 @@ def dumpContentIntoFile(strP, fileP):
 
 def printResult(learner_res, top_cnt, learner_name):
     str2ret = ''
-    perf_ = {0:'AUC', 1:'PRE', 2:'REC', 3:'F-1', 4:'ACC',  5:'GMN'}
+    perf_ = {0:'AUC', 1:'PRE', 2:'REC', 3:'FME', 4:'ACC',  5:'GMN'}
     for ind_ in xrange(len(learner_res)):
         perf_list = learner_res[ind_]
         print '*'*25
@@ -109,10 +109,10 @@ if __name__=='__main__':
     print "-"*125
     dir2save='/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/output/'
 
-    dataset_file="/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/dataset/MIRANTIS_FULL_DATASET.csv"
-    reproc_dump_output_file= '/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/reproc/TFIDF_MIR.dump'
-    theCompleteCategFile='/Users/akond/Documents/AkondOneDrive/OneDrive/IaC-Defect-Categ-Project/output/Mirantis_Categ_For_DB.csv'
-    reproc_dump_output_file= '/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/reproc/TFIDF_MIR.csv'
+    # dataset_file="/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/dataset/MIRANTIS_FULL_DATASET.csv"
+    # reproc_dump_output_file= '/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/reproc/TFIDF_MIR.dump'
+    # theCompleteCategFile='/Users/akond/Documents/AkondOneDrive/OneDrive/IaC-Defect-Categ-Project/output/Mirantis_Categ_For_DB.csv'
+    # reproc_dump_output_file= '/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/reproc/TFIDF_MIR.csv'
 
     # dataset_file="/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/dataset/SYNTHETIC_MOZ_FULL_DATASET.csv"
     # reproc_dump_output_file= '/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/reproc/TFIDF_MOZILLA.dump'
@@ -148,13 +148,15 @@ if __name__=='__main__':
     '''
     prediction time!
     '''
-    count_vec_flag = False # when set to False TF-IDF will occur, True will make TF-IDF occur 
+    count_vec_flag = False # when set to False TF-IDF will occur, True will make BOW occur 
     '''
     for getting the top X features 
     '''
     full_str = ''
-    # selective_top_count = 500
-    selective_top_count_list = [100, 250, 500, 750, 1000, 1250, 1500] 
+    # selective_top_count_list = [100, 250, 500, 750, 1000, 1250, 1500] ## MIR, MOZ
+    # selective_top_count_list = [100, 250, 500, 750, 1000, 1250, 1500, 1750, 2000, 2250, 2500, 2750, 3000, 3250, 3500]  ## OST 
+    # selective_top_count_list = [100, 250, 500, 750, 1000, 1250, 1500, 1750, 2000, 2250]  ## WIK    
+
     for selective_top_count in selective_top_count_list:
         all_learner_res = executeTokenizationAndPred(dir2save, unfilteredTokens, defectLabels, reproc_dump_output_file, selective_top_count, count_vec_flag)
         dt_res, knn_res, rf_res, sv_res, lr_res, nb_res = all_learner_res

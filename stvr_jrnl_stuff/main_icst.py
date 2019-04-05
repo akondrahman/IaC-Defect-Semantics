@@ -161,8 +161,7 @@ if __name__=='__main__':
     '''
     prediction time!
     '''
-    count_vec_flag = True # when set to False TF-IDF will occur
-
+    count_vec_flag = False   # when set to False TF-IDF will occur
     executeTokenizationAndPred(dir2save, unfilteredTokens, defectLabels, reproc_dump_output_file, count_vec_flag)
     print "The dataset was:", dataset_file
     print "-"*100
