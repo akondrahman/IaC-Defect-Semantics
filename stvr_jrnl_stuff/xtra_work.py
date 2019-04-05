@@ -22,6 +22,8 @@ def getCommonList(moz, ost, wik):
     return list(output)
 
 def getOperationFrequency(str_lis, ops_kw_lis):
+    if (len(str_lis) <= 0):
+        str_lis =  str_lis + ['DUMMY'] 
     # print str_lis
     ops_kw_lis = [y_ for y_ in ops_kw_lis if isinstance(y_, basestring) ]
     # print ops_kw_lis
@@ -82,18 +84,18 @@ if __name__=='__main__':
     # 
     cols = ['FILE_PATH', 'DEFECT_STATUS', 'FILE_PERC', 'USER_PERC', 'DB_PERC', 'WEB_PERC', 'ANAL_PERC']
 
-    MIR_FIL = '/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/dataset/MIRANTIS_FULL_DATASET.csv'
-    MIR_OUTPUT_DF = getOperationMapping(MIR_FIL, mir_file_list, mir_user_list, mir_db_list, mir_web_list, mir_ana_list)  
-    MIR_OUTPUT_DF.to_csv('/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/dataset/MIRANTIS_OPERATION_MAPPING_DATASET.csv', cols)
+    # MIR_FIL = '/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/dataset/MIRANTIS_FULL_DATASET.csv'
+    # MIR_OUTPUT_DF = getOperationMapping(MIR_FIL, mir_file_list, mir_user_list, mir_db_list, mir_web_list, mir_ana_list)  
+    # MIR_OUTPUT_DF.to_csv('/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/dataset/MIRANTIS_OPERATION_MAPPING_DATASET.csv')
 
     # MOZ_FIL = '/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/dataset/SYNTHETIC_MOZ_FULL_DATASET.csv'
     # MOZ_OUTPUT_DF = getOperationMapping(MOZ_FIL, moz_file_list, moz_user_list, moz_db_list, moz_web_list, moz_ana_list)   
-    # MOZ_OUTPUT_DF.to_csv('/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/dataset/MOZILLA_OPERATION_MAPPING_DATASET.csv', cols)    
+    # MOZ_OUTPUT_DF.to_csv('/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/dataset/MOZILLA_OPERATION_MAPPING_DATASET.csv')    
 
     # OST_FIL = '/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/dataset/SYNTHETIC_OPENSTACK_FULL_DATASET.csv'
     # OST_OUTPUT_DF = getOperationMapping(OST_FIL, ost_file_list, ost_user_list, ost_db_list, ost_web_list, ost_ana_list)     
-    # OST_OUTPUT_DF.to_csv('/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/dataset/OPENSTACK_OPERATION_MAPPING_DATASET.csv', cols)    
+    # OST_OUTPUT_DF.to_csv('/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/dataset/OPENSTACK_OPERATION_MAPPING_DATASET.csv')    
 
     # WIK_FIL = '/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/dataset/SYNTHETIC_WIKI_FULL_DATASET.csv'
     # WIK_OUTPUT_DF = getOperationMapping(WIK_FIL, wik_file_list, wik_user_list, wik_db_list, wik_web_list, wik_ana_list)    
-    # WIK_OUTPUT_DF.to_csv('/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/dataset/WIKIMEDIA_OPERATION_MAPPING_DATASET.csv', cols)     
+    # WIK_OUTPUT_DF.to_csv('/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/dataset/WIKIMEDIA_OPERATION_MAPPING_DATASET.csv')     
