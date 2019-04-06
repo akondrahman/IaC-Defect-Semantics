@@ -56,6 +56,25 @@ def getOperationMapping(file_name, file_kws, user_kws, db_kws, web_kws, ana_kws)
     df_output = pd.DataFrame(whole_list)
     return df_output
 
+def printOpsFreq(file_name):
+    mapping_df = pd.read_csv(file_name)
+    r_, c_     = mapping_df.shape 
+    file_ops_values = mapping_df[mapping_df['FILE_FLAG']>0]['FILE_FLAG'].tolist() 	
+    user_ops_values = mapping_df[mapping_df['USER_FLAG']>0]['USER_FLAG'].tolist() 	
+    
+    dbas_ops_values = mapping_df[mapping_df['DB_FLAG']>0]['DB_FLAG'].tolist() 	
+    webs_ops_values = mapping_df[mapping_df['WEB_FLAG']>0]['WEB_FLAG'].tolist() 	
+    anal_ops_values = mapping_df[mapping_df['ANAL_FLAG']>0]['ANAL_FLAG'].tolist() 	
+
+    print 'File operations:', (float(len(file_ops_values)) / float(r_))*100
+    print 'User operations:', (float(len(user_ops_values)) / float(r_))*100    
+
+    print 'Database operations:', (float(len(dbas_ops_values)) / float(r_))*100
+    print 'Website operations:', (float(len(webs_ops_values)) / float(r_))*100  
+    print 'Analytical operations:', (float(len(anal_ops_values)) / float(r_))*100          
+    print 'Infra provisioning operations:', (float(len(dbas_ops_values) + len(webs_ops_values) + len(anal_ops_values)) / float(r_))*100
+
+
 if __name__=='__main__':
     kw_list_moz_file = '/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/dataset/MOZILLA_GT_KW.csv'
     kw_list_ost_file = '/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/dataset/OPENSTACK_GT_KW.csv'
@@ -99,3 +118,21 @@ if __name__=='__main__':
     # WIK_FIL = '/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/dataset/SYNTHETIC_WIKI_FULL_DATASET.csv'
     # WIK_OUTPUT_DF = getOperationMapping(WIK_FIL, wik_file_list, wik_user_list, wik_db_list, wik_web_list, wik_ana_list)    
     # WIK_OUTPUT_DF.to_csv('/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/dataset/WIKIMEDIA_OPERATION_MAPPING_DATASET.csv')     
+
+    # OPS_MAP_MIR_FIL = '/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/dataset/LABELED_MIRANTIS_OPERATION_MAPPING_DATASET.csv'
+    # OPS_MAP_MOZ_FIL = '/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/dataset/LABELED_MOZILLA_OPERATION_MAPPING_DATASET.csv'
+    # OPS_MAP_OST_FIL = '/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/dataset/LABELED_OPENSTACK_OPERATION_MAPPING_DATASET.csv'
+    # OPS_MAP_WIK_FIL = '/Users/akond/Documents/AkondOneDrive/OneDrive/stvr/dataset/LABELED_WIKIMEDIA_OPERATION_MAPPING_DATASET.csv'
+
+    print OPS_MAP_MIR_FIL
+    printOpsFreq(OPS_MAP_MIR_FIL)
+    print '='*50
+    print OPS_MAP_MOZ_FIL
+    printOpsFreq(OPS_MAP_MOZ_FIL)
+    print '='*50
+    print OPS_MAP_OST_FIL
+    printOpsFreq(OPS_MAP_OST_FIL)
+    print '='*50
+    print OPS_MAP_WIK_FIL
+    printOpsFreq(OPS_MAP_WIK_FIL)
+    print '='*50            
