@@ -232,4 +232,5 @@ if __name__=='__main__':
         # print indi_file, per_file_metrics, FILE_OPS_FLAG, USER_OPS_FLAG, DBAS_OPS_FLAG, WEBS_OPS_FLAG, ANAL_OPS_FLAG  
         full_out_str = full_out_str + indi_file + ',' + per_file_metrics + ',' + str(FILE_OPS_FLAG) + ',' + str(USER_OPS_FLAG) + ',' + str(DBAS_OPS_FLAG) + ',' + str(WEBS_OPS_FLAG) + ',' + str(ANAL_OPS_FLAG) + '\n'
     
+    full_out_str = 'FILE_PATH,DEVS,MINORS,OWNER_LINES,AGE,FILE_FLAG,USER_FLAG,DB_FLAG,WEB_FLAG,ANAL_FLAG' + '\n' + full_out_str 
     dumpContentIntoFile(full_out_str, OPS_MAP_OUT) 
